@@ -1,0 +1,12 @@
+{
+  "name": "book-room",
+  "version": "0.1.0",
+  "description": "Manage room usage via a simple multi-platform app",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/txwkx/book-room.git",
+    "type": "git"
+  },
+  "author": "Todor Tsankov",
+  "license": "MIT"
+}
