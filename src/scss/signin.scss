@@ -1,0 +1,105 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400);
+
+//Variables:
+$font-main: 'Roboto Condensed', sans-serif;
+
+$override-white: #fff !important;
+$button-dark-blue: #1e2537;
+$button-dark-hover: #0f1219;
+$input-light-blue: #31aca5;
+$form-max-width: 500px;
+
+//Mixins:
+@mixin border-box {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+button:focus {outline:0 !important;}
+
+.form-signin {
+  max-width: $form-max-width;
+  padding: 85px 70px 0 70px;
+  margin: 0 auto;
+
+  .form-control {
+    position: relative;
+    height: 48px;
+    padding-left: 25px;
+    font : {
+      size: 18px;
+      family: $font-main;
+    }
+    @include border-box;
+  }
+
+  button, input {
+    border: none;
+    box-shadow: none;
+    font-weight: 300;
+    @include border-radius(25px);
+  }
+
+  button {
+    background-color: $button-dark-blue;
+    &:hover {
+      background-color: $button-dark-hover;
+    }
+  }
+
+  input {
+    background-color: $input-light-blue;
+    color: #fff;
+  }
+
+  input[type="text"] {
+    margin-bottom: 5px;
+  }
+
+  input[type="password"] {
+    margin-bottom: 15px;
+  }
+
+}
+
+.logo, .login {
+  height: 50%;
+  display: block;
+}
+
+.logo {
+  background-color: #1d262f;
+  //background-image: ;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.login {
+  background-color: #38c5bc;
+}
+
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: $override-white;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: $override-white;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: $override-white;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: $override-white;
+}
