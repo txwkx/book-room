@@ -4,7 +4,8 @@
 $font-secondary: 'Noto Sans', sans-serif;
 
 $black: #04040a;
-$grey: #818181;
+$grey-dark: #818181;
+$grey-light: #868686;
 $red: #ff4b3a;
 $green: #52d1a4;
 $blue: #2aa7d5;
@@ -65,7 +66,6 @@ body {
   a { color: #fff; }
 
   .navbar-toggle {
-    float: left;
     margin-left: 15px;
 
     .icon-bar { background: #fff; }
@@ -101,7 +101,7 @@ body {
 
   @include block-setting();
 
-  p { @include font-setting(18px, $grey, uppercase); }
+  p { @include font-setting(18px, $grey-dark, uppercase); }
 
   .timeline-header {
     width: 100%;
@@ -128,13 +128,13 @@ body {
 
       &.occupied { border-top: 2px solid $red; }
 
-      p { @include font-setting(16px, $grey, uppercase); }
+      p { @include font-setting(16px, $grey-dark); }
 
       .title { @include font-setting(26px, $black); }
 
       .time {
         float: right;
-        @include font-setting(16px, $grey);
+        @include font-setting(16px, $grey-dark);
       }
 
       .attend {
