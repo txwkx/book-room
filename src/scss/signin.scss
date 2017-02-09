@@ -1,105 +1,183 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400);
+@import "helpers/_defaults.scss";
+@import "helpers/_variables.scss";
 
-//Variables:
-$font-main: 'Roboto Condensed', sans-serif;
-
-$override-white: #fff !important;
-$button-dark-blue: #1e2537;
-$button-dark-hover: #0f1219;
-$input-light-blue: #31aca5;
-$form-max-width: 500px;
-
-//Mixins:
-@mixin border-box {
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+@mixin transform($transforms) {
+	   -moz-transform: $transforms;
+	     -o-transform: $transforms;
+	    -ms-transform: $transforms;
+	-webkit-transform: $transforms;
+          transform: $transforms;
 }
 
-@mixin border-radius($radius) {
-  -webkit-border-radius: $radius;
-     -moz-border-radius: $radius;
-      -ms-border-radius: $radius;
-          border-radius: $radius;
+@mixin transform-origin($origin) {
+    moz-transform-origin: $origin;
+     -o-transform-origin: $origin;
+    -ms-transform-origin: $origin;
+-webkit-transform-origin: $origin;
+        transform-origin: $origin;
 }
 
-html, body {
-  height: 100%;
-  width: 100%;
+@mixin transition($transition...) {
+    -moz-transition:    $transition;
+    -o-transition:      $transition;
+    -webkit-transition: $transition;
+    transition:         $transition;
 }
 
-button:focus {outline:0 !important;}
+body {
+  background: {
+    color: $grey-light;
+    image: url('../../src/img/room.jpg');
+    repeat: no-repeat;
+    size: cover;
+    position: center;
+    blend-mode: luminosity;
+  }
+  overflow: hidden;
+  font-family: $font-main;
 
-.form-signin {
-  max-width: $form-max-width;
-  padding: 85px 70px 0 70px;
-  margin: 0 auto;
+}
+.popup {
+  background: #fff;
+  margin: 8vw auto;
+  max-width: 400px;
+  box-shadow: 0 3px 6px 0px rgba(0,0,0,0.16), 0 3px 6px 0px rgba(0,0,0,0.23);
 
-  .form-control {
+  .content {
+    overflow: hidden;
     position: relative;
-    height: 48px;
-    padding-left: 25px;
-    font : {
-      size: 18px;
-      family: $font-main;
-    }
-    @include border-box;
+    padding: 40px;
   }
 
-  button, input {
-    border: none;
-    box-shadow: none;
-    font-weight: 300;
-    @include border-radius(25px);
-  }
-
-  button {
-    background-color: $button-dark-blue;
-    &:hover {
-      background-color: $button-dark-hover;
-    }
-  }
-
-  input {
-    background-color: $input-light-blue;
+  .header {
     color: #fff;
+    font-size: 34px;
+    font-weight: normal;
+    padding: 50px 0;
+    text-align: center;
+    text-transform: uppercase;
+    background: $blue;
   }
 
-  input[type="text"] {
-    margin-bottom: 5px;
-  }
-
-  input[type="password"] {
+  .form-group {
     margin-bottom: 15px;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    .label-control {
+      color: #888;
+      display: block;
+      font-size: 16px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 0;
+      width: 100%;
+      pointer-events: none;
+      height: 100%;
+
+      &:before, &:after{
+        content: "";
+        left: 0;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+      }
+
+      &:before{
+        border-bottom: 1px solid $grey-light;
+        @include transition(transform 0.3s);
+      }
+
+      &:after {
+        border-bottom: 2px solid $blue;
+        @include transform(translate3d(-100%, 0, 0));
+        @include transition(transform 0.3s);
+      }
+    }
+
+    .form-control {
+      outline: none;
+      box-shadow: none;
+      border: none;
+      border-radius: 0;
+      margin-top: 20px;
+      padding: 12px 0;
+      width: 100%;
+      font-size: 16px;
+
+      &:focus {
+        outline: none;
+        box-shadow: none;
+      }
+    }
   }
 
+
+.form-group .label-control .label-text{
+    @include transform(translate3d(0, 30px, 0) scale(1));
+    @include transform-origin(top left);
+    @include transition(0.3s);
+
+    position: absolute;
+}
+.active .label-control::after{
+    @include transform(translate3d(0%, 0, 0));
+}
+.active .label-control .label-text {
+    opacity: 1;
+    color: $blue !important;
+    @include transform(scale(0.9));
 }
 
-.logo, .login {
-  height: 50%;
-  display: block;
-}
-
-.logo {
-  background-color: #1d262f;
-  //background-image: ;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-.login {
-  background-color: #38c5bc;
+.input-field label:before{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 1px solid $grey-light;
+  @include transition(transform 0.3s);
 }
 
 
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: $override-white;
+  input.btn[type="submit"] {
+    background: $blue;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin: 5px 0;
+    outline: medium none;
+    overflow: hidden;
+    padding: 10px;
+    text-transform: uppercase;
+    transition: all 0.15s ease-in-out 0s;
+    width: 100%;
+
+    &:hover {
+      filter: contrast(150%);
+    }
+  }
+
+  .recover {
+    font-size: 16px;
+    text-align: center;
+    margin: 10px 0;
+    color: #175690;
+  }
 }
-::-moz-placeholder { /* Firefox 19+ */
-  color: $override-white;
-}
-:-ms-input-placeholder { /* IE 10+ */
-  color: $override-white;
-}
-:-moz-placeholder { /* Firefox 18- */
-  color: $override-white;
+
+@media (max-width: 480px){
+  .popup {
+    width: 90%;
+    margin: 30px auto;
+  }
+  form#login-form{
+    padding:8%;
+  }
 }

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <title>Book Room - Login page</title>
 
@@ -14,19 +14,34 @@
 
 </head>
 <body>
-  
-  <div class='logo'></div>
-  <div class='login'>
-
-      <form class="form-signin">
-        <label for="inputUsername" class="sr-only">Username</label>
-        <input type="text" id="inputUsername" class="form-control" placeholder="Username" required="" autofocus="" autocomplete="off">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+  <div class="popup">
+    <div class="header">Welcome Back</div>
+    <div class="content">
+      <form action="#" id="login-form">
+          <div class="form-group">
+            <label class="label-control">
+              <span class="label-text">Username</span>
+            </label>
+            <input type="text" name="username" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="label-control">
+              <span class="label-text">Password</span>
+            </label>
+            <input type="password" name="password" class="form-control">
+          </div>
+          <input type="submit" value="Login" class="btn">
+          <p class='recover'><a href="#">Forgot password ?</a></p>
       </form>
-
+    </div>
   </div>
-
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script type="text/javascript">
+    $(window).load(function(){
+      $('.form-group input').on('focus blur', function (e) {
+        $(this).parents('.form-group').toggleClass('active', (e.type === 'focus' || this.value.length > 0));
+      }).trigger('blur');
+    });
+  </script>
 </body>
 </html>
