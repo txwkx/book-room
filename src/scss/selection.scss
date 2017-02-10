@@ -1,0 +1,54 @@
+@import "helpers/_defaults.scss";
+@import "helpers/_variables.scss";
+
+@mixin animation($animation) {
+  -webkit-animation: $animation;
+  -moz-animation:    $animation;
+  -ms-animation:     $animation;
+  -o-animation:      $animation;
+  animation:         $animation;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+}
+
+#book, #look {
+  color: #fff;
+  text-align: center;
+
+  flex: 1;
+  -webkit-transition: flex 0.2s ease-in;
+
+  &:hover {
+    flex: 2;
+    -webkit-transition: flex 0.2s ease-out;
+  }
+
+  .text {
+    @include animation(fadein 2s);
+  }
+}
+
+#book {
+  background-color: $green;
+}
+
+#look {
+  background-color: $blue;
+}
+
+@media (max-width: 768px) {
+  body { flex-direction: column;}
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
