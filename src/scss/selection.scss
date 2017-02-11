@@ -1,13 +1,6 @@
-@import "helpers/_defaults.scss";
-@import "helpers/_variables.scss";
+@charset "UTF-8";
 
-@mixin animation($animation) {
-  -webkit-animation: $animation;
-  -moz-animation:    $animation;
-  -ms-animation:     $animation;
-  -o-animation:      $animation;
-  animation:         $animation;
-}
+@import "helpers/_defaults.scss";
 
 body {
   display: flex;
