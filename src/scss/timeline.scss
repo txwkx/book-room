@@ -1,14 +1,7 @@
-@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700);
+@charset "UTF-8";
 
-//Variables:
-$font-secondary: 'Noto Sans', sans-serif;
-
-$black: #04040a;
-$grey-dark: #818181;
-$grey-light: #868686;
-$red: #ff4b3a;
-$green: #52d1a4;
-$blue: #2aa7d5;
+@import "helpers/_defaults.scss";
+@import "header.scss";
 
 //Mixins:
 @mixin font-setting($size, $color, $transform: none){
@@ -24,24 +17,9 @@ $blue: #2aa7d5;
   background-color: $color;
 };
 
-
-body {
-  font {
-    family: $font-secondary;
-    size: 16px;
-  }
-}
-
 .wrap {
 
   &.scrolled {
-    .navbar {
-      background-color: $blue;
-
-      li.active a { border-bottom: none;}
-
-      .navbar-collapse { background-color: $blue; }
-    }
 
     .timeline-header {
       position: fixed;
@@ -54,22 +32,6 @@ body {
     }
   }
 
-}
-
-.navbar {
-  height: 50px;
-
-  li a:hover, li a:focus { background-color: rgba(225,225,225,0.2); }
-
-  li.active a { border-bottom: 2px solid #fff; }
-
-  a { color: #fff; }
-
-  .navbar-toggle {
-    margin-left: 15px;
-
-    .icon-bar { background: #fff; }
-  }
 }
 
 .room-photo {
@@ -86,14 +48,8 @@ body {
     repeat: no-repeat;
   }
 
-  &:after {
-    position: absolute;
-    content: "";
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(to right, rgba(127,142,138,0.6) 0%, rgba(100,165,210,1) 100%); /* W3C */
+  background: linear-gradient(to right, rgba(127,142,138,0.6) 0%, rgba(100,165,210,1) 100%); /* W3C */
 
-  }
 }
 
 .timeline {
