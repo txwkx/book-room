@@ -2,22 +2,31 @@
 
 @import "helpers/_defaults.scss";
 @import "helpers/_variables.scss";
+@import "header.scss";
 
-.navbar {
-  height: 50px;
+.container {
+  display: block;
+}
 
-  li a:hover, li a:focus { background-color: rgba(225,225,225,0.2); }
+.navbar-header {
+  order: 0;
+  text-align: center;
 
-  li.active a { border-bottom: 2px solid #fff; }
-
-  a { color: #fff; }
-
-  .navbar-toggle {
-    float: left;
-    margin-left: 15px;
-
-    .icon-bar { background: #fff; }
+  .navbar-brand {
+    display: inline-block;
+    float: initial;
   }
+}
+
+.book-btn {
+  display: inline-block;
+  float: right;
+  order: 2;
+  padding: 8px;
+}
+
+.navbar-collapse {
+  order: -1;
 }
 
 .content {
@@ -26,41 +35,40 @@
   background-color: #f3f3f3;
 }
 
-.filters {
-  list-style: none;
-  margin: 0;
+.filters{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  z-index: 1050;
 
-  background: $black;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: $grey-dark;
+    display: flex;
 
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
+    li {
+      flex: 1;
+      text-align: center;
 
-  -webkit-flex-flow: row wrap;
-  justify-content: center;
+      a {
+        text-decoration: none;
+        display: block;
+        padding: 1em;
+        color: #fff;
+      }
 
-  a {
-    text-decoration: none;
-    display: block;
-    padding: 1em;
-    color: #fff;
-
-    &:hover {
-      background-color: $blue;
+      &:hover {
+        background-color: $blue;
+      }
     }
   }
 }
 
-@media all and (max-width: 768px) {
-  .filters {
-    justify-content: space-around;
-  }
-}
-
 .main {
-  padding: 20px;
+  padding: 20px 5px;
 
   .room {
     box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
@@ -80,14 +88,16 @@
       background: linear-gradient(to right, rgba(127,142,138,0.6) 0%, rgba(100,165,210,1) 100%); /* W3C */
 
       span {
-        font-family: $font-main;
-        font-weight: 900;
+        font: {
+          family: $font-main;
+          weight: 900;
+          size: 2rem;
+        }
         text-transform: uppercase;
         margin: 0;
         position: absolute;
         top: 50%;
         left: 50%;
-        font-size: 2rem;
         transform: translate(-50%, -50%);
       }
     }
@@ -96,8 +106,10 @@
       padding: 15px;
 
       .title {
-        font-weight: bold;
-        font: $font-secondary;
+        font: {
+          weight: bold;
+          family: $font-secondary;
+        }
       }
     }
 
@@ -105,7 +117,18 @@
 }
 
 @media (min-width: 768px) {
-  .main {
-    padding: 0px 40px;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .content {
+    padding-top: 100px;
+  }
+
+  .filters {
+    top: 50px;
   }
 }
