@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+@import "helpers/_variables.scss";
+
+.navbar {
+  height: 50px;
+  background-color: $black;
+
+  .navbar-nav {
+    margin: 0 -15px;
+    background: $black;
+  }
+
+  li a:hover, li a:focus { background-color: rgba(225,225,225,0.2); }
+
+  //li.active a { border-bottom: 2px solid #fff; }
+
+  a { color: #fff; font-weight: bold;}
+
+  .navbar-toggle {
+    margin-left: 15px;
+    border: none;
+    float: left;
+
+    &:hover {
+      background: none;
+    }
+
+    .icon-bar { background: #fff; }
+  }
+}
