@@ -3,16 +3,24 @@
   "version": "0.1.0",
   "description": "Manage room usage via a simple multi-platform app",
   "main": "index.js",
-  "repository": {
-    "url": "https://github.com/txwkx/book-room.git",
-    "type": "git"
   "scripts": {
     "start": "webpack-dev-server --hot --inline",
     "validate-webpack": "webpack-validator webpack.config.js"
   },
+  "repository": "https://github.com/txwkx/book-room.git",
   "author": "Todor Tsankov",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0",
     "webpack-validator": "^2.3.0"
+  },
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
 }
