@@ -6,7 +6,13 @@
   "repository": {
     "url": "https://github.com/txwkx/book-room.git",
     "type": "git"
+  "scripts": {
+    "start": "webpack-dev-server --hot --inline",
+    "validate-webpack": "webpack-validator webpack.config.js"
   },
   "author": "Todor Tsankov",
   "license": "MIT"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0",
+    "webpack-validator": "^2.3.0"
 }
