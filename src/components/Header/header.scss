@@ -1,0 +1,69 @@
+@charset "UTF-8";
+
+$black: #04040a;
+
+.navbar {
+  height: 50px;
+  background-color: $black;
+
+  .container {
+    display: block;
+
+    .navbar-header {
+      order: 0;
+      text-align: center;
+
+      .navbar-brand {
+        display: inline-block;
+        float: initial;
+      }
+
+      .navbar-toggle {
+        margin-left: 15px;
+        border: none;
+        float: left;
+
+        &:hover {
+          background: none;
+        }
+
+        .icon-bar { background: #fff; }
+      }
+
+    }
+
+    .navbar-collapse {
+      order: -1;
+
+      .navbar-nav {
+        margin: 0 -15px;
+        background: $black;
+
+        li a:hover, li a:focus { background-color: rgba(225,225,225,0.2); }
+
+        //li.active a { border-bottom: 2px solid #fff; }
+
+        a { color: #fff; font-weight: bold;}
+
+      }
+    }
+
+    .book-btn {
+      display: inline-block;
+      float: right;
+      order: 2;
+      padding: 8px;
+    }
+
+  }
+}
+
+@media (min-width: 768px) {
+
+  .navbar .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+}
