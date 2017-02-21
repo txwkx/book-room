@@ -1,8 +1,12 @@
 @charset "UTF-8";
 
-body {
+@import '../../helpers/_mixins.scss';
+@import '../../helpers/_variables.scss';
+
+.pick {
   display: flex;
   flex-direction: row;
+  height: 100%;
 }
 
 #book, #look {
@@ -12,13 +16,21 @@ body {
   flex: 1;
   -webkit-transition: flex 0.2s ease-in;
 
-  &:hover {
+  &:hover, &:focus {
     flex: 2;
     -webkit-transition: flex 0.2s ease-out;
+    text-decoration: none;
   }
 
   .text {
     @include animation(fadein 2s);
+    display: inline-block;
+
+    .heading {
+      font-size: 52px;
+      display: block;
+
+    }
   }
 }
 
@@ -31,7 +43,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  body { flex-direction: column;}
+  .pick { flex-direction: column;}
 }
 
 @keyframes fadein {
