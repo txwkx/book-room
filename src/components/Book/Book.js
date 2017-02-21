@@ -5,9 +5,10 @@ import OneRoom from './OneRoom';
 
 require('./book.scss');
 
-class Book extends Component {
+export default class Book extends Component {
+  state = {}
 
-  callBookForm(e){
+  callBookForm = (e) => {
     e.preventDefault();
   }
 
@@ -33,7 +34,7 @@ class Book extends Component {
             <OneRoom
               name={'MEETING ROOM NUMBA 3'}
               title={'Long meeting title yeap'}
-              callBookForm={this.callBookForm.bind(this)}
+              callBookForm={this.callBookForm}
             />
 
           </div>
@@ -42,5 +43,3 @@ class Book extends Component {
     );
   }
 }
-
-export default Book;

@@ -23,7 +23,7 @@ $black: #04040a;
         border: none;
         float: left;
 
-        &:hover {
+        &:hover, &:focus {
           background: none;
         }
 
