@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-@import "header.scss";
+@import '../../helpers/_variables.scss';
 
 //Mixins:
 @mixin font-setting($size, $color, $transform: none){
@@ -98,7 +98,7 @@
 
         &.free { color: $green; }
 
-        &:hover { text-decoration: none; }
+        &:hover { text-decoration: none; cursor: pointer;}
       }
     }
   }
