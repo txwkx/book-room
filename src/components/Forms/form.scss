@@ -13,16 +13,28 @@
     blend-mode: luminosity;
   }
   position: relative;
+
+  .popup {
+    left: 50%;
+    margin: 10vw 0 0 -200px;
+    box-shadow: 0 3px 6px 0px rgba(0,0,0,0.16), 0 3px 6px 0px rgba(0,0,0,0.23);
+  }
+}
+
+.bookform {
+  .popup {
+    right: 0;
+    height: 100vh;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.16), 0 0 2px 0 rgba(0,0,0,.12);
+  }
 }
 
 .popup {
   font-family: $font-main;
   background: #fff;
-  min-width: 400px;
+  min-width: 350px;
+  max-width: 400px;
   position: absolute;
-  left: 50%;
-  margin: 10vw 0 0 -200px;
-  box-shadow: 0 3px 6px 0px rgba(0,0,0,0.16), 0 3px 6px 0px rgba(0,0,0,0.23);
 
   .header {
     color: #fff;
@@ -42,8 +54,6 @@
     .form-group {
       margin-bottom: 15px;
       position: relative;
-      width: 100%;
-      overflow: hidden;
 
       .label-control {
         color: #888;
@@ -100,6 +110,15 @@
           outline: none;
           box-shadow: none;
         }
+      }
+
+      .filter {
+        position: relative;
+      }
+
+      &.textinput {
+        overflow: hidden;
+        width: 100%;
       }
 
       &.active {
