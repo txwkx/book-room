@@ -1,10 +1,6 @@
 @import "./helpers/_variables.scss";
 @import "./helpers/_mixins.scss";
 
-html, body, #app, #app > div {
-  height: 100%;
-}
-
 body {
   font {
     family: $font-secondary;

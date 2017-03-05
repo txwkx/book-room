@@ -3,13 +3,12 @@
 @import '../../helpers/_variables.scss';
 
 .book .content {
-  height: 100%;
   padding-top: 50px;
 
   .filters{
     position: fixed;
     bottom: -2px;
-    width: 100%;
+    width: 100vw;
     height: 50px;
     z-index: 1050;
 

@@ -38,7 +38,7 @@
   left: 0;
   top: 0;
 
-  width: 100%;
+  width: 100vw;
   min-height: 200px;
 
   background: {
@@ -59,7 +59,7 @@
   p { @include font-setting(18px, $grey-dark, uppercase); }
 
   .timeline-header {
-    width: 100%;
+    width: 100vw;
     z-index: 5;
     padding-bottom: 15px;
 

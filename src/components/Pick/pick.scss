@@ -6,7 +6,7 @@
 .pick {
   display: flex;
   flex-direction: row;
-  height: 100%;
+  height: 100vh;
 }
 
 #book, #look {
@@ -15,6 +15,11 @@
 
   flex: 1;
   -webkit-transition: flex 0.2s ease-in;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
 
   &:hover, &:focus {
     flex: 2;
