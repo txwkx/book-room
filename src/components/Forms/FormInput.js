@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 
 const FormInput = ({ type, name }) => (
-  <div class="form-group">
-    <label class="label-control">
-      <span class="label-text">{name}</span>
+  <div class='form-group textinput'>
+    <label class='label-control'>
+      <span class='label-text'>{name}</span>
     </label>
-    <input type={type} name={name} class="form-control" />
+    <input type={type} name={name} class='form-control' />
   </div>
 );
 
