@@ -1,17 +1,35 @@
-import React, { PropTypes } from 'react';
+import React, {Component, PropTypes} from 'react';
 
-const FormInput = ({ type, name }) => (
-  <div class='form-group textinput'>
-    <label class='label-control'>
-      <span class='label-text'>{name}</span>
-    </label>
-    <input type={type} name={name} class='form-control' />
-  </div>
-);
+export default class FormInput extends Component {
+    state = { isActive: false }
 
-FormInput.propTypes = {
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-};
+    static propTypes = {
+        name: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+        onChange: PropTypes.func
+    }
 
-export default FormInput;
+    onFocusBlur = (e) => {
+        if (e.type === 'focus' || e.target.value.length > 0) {
+            this.setState({isActive: true});
+        } else {
+            this.setState({isActive: false});
+        }
+    }
+
+    render() {
+        return (
+            <div class={`form-group textinput ${this.state.isActive ? 'active': ''}`}>
+                <label class='label-control'>
+                    <span class='label-text'>{this.props.name}</span>
+                </label>
+                <input type={this.props.type}
+                       name={this.props.name}
+                       class='form-control'
+                       onFocus={this.onFocusBlur}
+                       onBlur={this.onFocusBlur}
+                       onChange={this.props.onChange} />
+            </div>
+        );
+    }
+}
