@@ -1,22 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 require('./pick.scss');
 
-export default ({ }) => (
+export default ({ match }) => (
   <div class='pick'>
-    <a href="#/look" id="look">
+    <Link id='look' to="/look">
       <span class='text'>
         <span class='heading'>LOOK</span>
         <span>Scroll through the upcoming events</span>
         <i class='icon'></i>
       </span>
-    </a>
-    <a href="#/book" id='book'>
+    </Link>
+    <Link id='book' to="/book">
       <span class='text'>
         <span class='heading'>BOOK</span>
         <span>Browse through a list of rooms</span>
         <i class='icon'></i>
       </span>
-    </a>
+    </Link>
   </div>
 );

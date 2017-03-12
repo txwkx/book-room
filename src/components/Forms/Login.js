@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import FormInput from './FormInput';
 
-require('./login.scss');
+require('./form.scss');
 
 export default class Login extends Component {
   state = {}
@@ -18,17 +18,17 @@ export default class Login extends Component {
   render() {
     return(
       <div class='login'>
-        <div class="popup">
-          <div class="header">Welcome Back</div>
-          <div class="content">
-            <form action="#" id="login-form">
-              
+        <div class='popup'>
+          <div class='header'>Welcome Back</div>
+          <div class='content'>
+            <form action='#' id='login-form'>
+
               <FormInput type='text' name='username' />
 
               <FormInput type='password' name='password' />
 
-              <input type="submit" value="Login" class="btn" onClick={this.handleLogin} />
-              <p class='recover'><a href="#" onClick={this.recoverPassword}>Forgot password ?</a></p>
+              <input type='submit' value='Login' class='btn' onClick={this.handleLogin} />
+              <p class='recover'><a href='#' onClick={this.recoverPassword}>Forgot password ?</a></p>
             </form>
           </div>
         </div>

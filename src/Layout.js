@@ -1,15 +1,20 @@
-import React, { PropTypes } from 'react';
+import React, {Component} from 'react';
+import { Route } from 'react-router-dom';
 
-const Layout = ({ children }) => {
+import Book from './components/Book/Book';
+import Login from './components/Forms/Login';
+import Look from './components/Look/Look';
+import Pick from './components/Pick/Pick';
+
+const Layout = ({ }) => {
   return (
     <div>
-      {children}
+      <Route exact path="/" component={Pick} />
+      <Route path="/login" component={Login} />
+      <Route path="/book" component={Book} />
+      <Route path="/look" component={Look} />
     </div>
-  )
-}
-
-Layout.propTypes = {
-  children: PropTypes.object.isRequired
+  );
 }
 
 export default Layout;
