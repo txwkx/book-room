@@ -1,21 +1,3 @@
-@charset "UTF-8";
-
-@import '../../helpers/_variables.scss';
-
-//Mixins:
-@mixin font-setting($size, $color, $transform: none){
-  font: {
-    size: $size;
-  }
-  color: $color;
-  text-transform: $transform;
-}
-
-@mixin block-setting($position: relative, $color: #fff) {
-  position: $position;
-  background-color: $color;
-};
-
 .wrap {
 
   &.scrolled {

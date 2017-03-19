@@ -1,5 +1,12 @@
+@charset "UTF-8";
+
 @import "./helpers/_variables.scss";
 @import "./helpers/_mixins.scss";
+
+@import "./components/Book/book";
+@import "./components/Look/look";
+@import "./components/Pick/pick";
+@import "./components/Forms/form";
 
 body {
   font {

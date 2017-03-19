@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import FormInput from './FormInput';
 
-require('./form.scss');
-
 export default class Login extends Component {
   state = {}
 

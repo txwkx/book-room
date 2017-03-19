@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-require('./pick.scss');
-
 export default ({ match }) => (
   <div class='pick'>
     <Link id='look' to="/look">

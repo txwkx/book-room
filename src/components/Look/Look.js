@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import Header from '../Header/Header';
 import MeetingsList from './MeetingsList';
 
-require('./look.scss');
-
 export default class Look extends Component {
   state = { scrolled: false }
 
