@@ -2,19 +2,28 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-  context: path.join(__dirname, ''),
-  entry: "./src/js/app.js",
+  context: path.resolve(__dirname, ''),
+  entry: "./src/app.js",
   output: {
     filename: "bundle.js",
-    path: path.join(__dirname, '/')
+    path: path.resolve(__dirname, '/')
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.js$/,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        loader: 'eslint-loader',
+        options: {
+          emitWarning: true,
+        },
+      },
+      {
+        test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        query: {
+        options: {
           presets: ['es2015', 'react', 'stage-0'],
           plugins: ['react-html-attrs']
         }
@@ -22,12 +31,29 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        loader: 'style-loader!css-loader!sass-loader'
+        use: [
+          'style-loader',
+          'css-loader',
+          'resolve-url-loader',
+          'sass-loader',
+        ],
       },
+      {
+        test: /\.(jpg|png|gif)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 25000
+        }
       }
     ]
   },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin(),
+  ],
   devServer: {
-    port: 8007
+    port: 8007,
+    historyApiFallback: true,
+    stats: 'errors-only',
+    overlay: true,
   }
 };

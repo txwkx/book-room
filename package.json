@@ -4,8 +4,7 @@
   "description": "Manage room usage via a simple multi-platform app",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --inline",
-    "validate-webpack": "webpack-validator webpack.config.js"
+    "start": "webpack-dev-server --hot --inline --open"
   },
   "repository": "https://github.com/txwkx/book-room.git",
   "author": "Todor Tsankov",
@@ -21,12 +20,14 @@
     "css-loader": "^0.26.1",
     "eslint": "^3.18.0",
     "eslint-loader": "^1.6.3",
+    "file-loader": "^0.10.0",
     "node-sass": "^4.5.0",
+    "resolve-url-loader": "^2.0.2",
     "sass-loader": "^6.0.0",
     "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
     "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.3.0",
-    "webpack-validator": "^2.3.0"
+    "webpack-dev-server": "^2.3.0"
   },
   "dependencies": {
     "react": "^15.4.2",
