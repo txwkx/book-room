@@ -1,0 +1,24 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true,
+      modules: true
+    }
+  },
+
+  "rules": {
+    "quote-props": [1, "as-needed"],
+    "quotes": [1, "single"],
+    "semi": [1, "always"], // require or disallow use of semicolons instead of ASI
+    "no-var": 2, // require let or const instead of var (off by default) ES6,
+  }
+}
