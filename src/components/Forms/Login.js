@@ -8,11 +8,11 @@ export default class Login extends Component {
   state = {}
 
   handleLogin = (e) => {
-    e.preventDefault()
+    e.preventDefault();
   }
 
   recoverPassword = (e) => {
-    e.preventDefault()
+    e.preventDefault();
   }
 
   render() {
@@ -33,6 +33,6 @@ export default class Login extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }

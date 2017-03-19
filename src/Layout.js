@@ -15,6 +15,6 @@ const Layout = ({ }) => {
       <Route path="/look" component={Look} />
     </div>
   );
-}
+};
 
 export default Layout;
