@@ -1,32 +1,38 @@
-@charset "UTF-8";
-
-@import '../../helpers/_mixins.scss';
-@import '../../helpers/_variables.scss';
-
-
 .login {
   background: {
-    //image: url('../../images/room.jpg');
+    image: url('./images/room.jpg');
     repeat: no-repeat;
     size: cover;
     position: center;
     blend-mode: luminosity;
   }
+  height: 100vh;
   position: relative;
 
-  .popup {
-    left: 50%;
-    margin: 10vw 0 0 -200px;
-    box-shadow: 0 3px 6px 0px rgba(0,0,0,0.16), 0 3px 6px 0px rgba(0,0,0,0.23);
-  }
+  .popup { margin-top: 10vh; }
+
 }
 
 .bookform {
-  .popup {
+  z-index: 1200;
+  position: fixed;
+  display: none;
+  top: 0;
+  width: 100vw;
+
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
     right: 0;
-    height: 100vh;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,.16), 0 0 2px 0 rgba(0,0,0,.12);
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background: rgba(14,43,63,0.9);
   }
+
+  .popup { margin-top: 6vh; }
+
+  &.opened { display: block; }
 }
 
 .popup {
@@ -35,6 +41,10 @@
   min-width: 350px;
   max-width: 400px;
   position: absolute;
+  left: 50%;
+  margin-left: -175px;
+  box-shadow: 0 3px 6px 0px rgba(0,0,0,0.16), 0 3px 6px 0px rgba(0,0,0,0.23);
+  z-index: 1200;
 
   .header {
     color: #fff;
@@ -114,6 +124,10 @@
 
       .filter {
         position: relative;
+
+        .dropdown-menu li {
+          &:hover { cursor: pointer; }
+        }
       }
 
       &.textinput {
@@ -166,9 +180,7 @@
     transition: all 0.15s ease-in-out 0s;
     width: 100%;
 
-    &:hover {
-      filter: contrast(150%);
-    }
+    &:hover { filter: contrast(150%); }
   }
 
   .recover {
