@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 require('./header.scss');
 
-const Header = () => (
+const Header = ({ openBookForm }) => (
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class='book-btn'>
-        <button class='btn btn-danger'>BOOK</button>
+        <button class='btn btn-danger' onClick={e => openBookForm()}>BOOK</button>
       </div>
       <div class="navbar-header">
         <Link class="navbar-brand" to="/">LOGO</Link>

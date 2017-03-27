@@ -2,21 +2,20 @@ import React, { Component } from 'react';
 
 import Header from '../Header/Header';
 import OneRoom from './OneRoom';
-
-require('./book.scss');
+import BookForm from '../Forms/BookForm';
 
 export default class Book extends Component {
-  state = {}
+  state = { formIsOpened: false }
 
-  callBookForm = (e) => {
-    e.preventDefault();
+  toggleBookForm = () => {
+    this.setState({formIsOpened: !this.state.formIsOpened});
   }
 
   render() {
 
     return (
       <div class='book'>
-        <Header />
+        <Header openBookForm={this.toggleBookForm} />
 
         <div class="container-fluid content">
 
@@ -39,6 +38,10 @@ export default class Book extends Component {
 
           </div>
         </div>
+
+        <BookForm
+          isOpened={this.state.formIsOpened}
+          closeBookForm={this.toggleBookForm} />
       </div>
     );
   }
