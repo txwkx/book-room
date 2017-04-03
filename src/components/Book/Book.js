@@ -3,12 +3,28 @@ import React, { Component } from 'react';
 import Header from '../Header/Header';
 import OneRoom from './OneRoom';
 import BookForm from '../Forms/BookForm';
+import Filters from './Filters';
+
+const filters = [
+  { value: 'Name', id: 1 },
+  { value: 'Size', id: 2 },
+  { value: 'Availability', id: 3 },
+  { value: 'Status', id: 4 }
+];
 
 export default class Book extends Component {
-  state = { formIsOpened: false }
+  state = {
+    formIsOpened: false,
+    activeFilter: ''
+   }
 
   toggleBookForm = () => {
     this.setState({formIsOpened: !this.state.formIsOpened});
+  }
+
+  applyFilter = (filter) => {
+    console.log(filter);
+    if(filter !== this.state.activeFilter) this.setState({activeFilter: filter});
   }
 
   render() {
@@ -19,14 +35,10 @@ export default class Book extends Component {
 
         <div class="container-fluid content">
 
-          <div class="row filters">
-            <ul>
-              <li><a href="#">Name</a></li>
-              <li><a href="#">Size</a></li>
-              <li><a href="#">Availability</a></li>
-              <li><a href="#">Status</a></li>
-            </ul>
-          </div>
+          <Filters
+            filterslist={filters}
+            applyFilter={this.applyFilter}
+          />
 
           <div class="row room-list">
 
@@ -41,7 +53,8 @@ export default class Book extends Component {
 
         <BookForm
           isOpened={this.state.formIsOpened}
-          closeBookForm={this.toggleBookForm} />
+          closeBookForm={this.toggleBookForm}
+        />
       </div>
     );
   }
