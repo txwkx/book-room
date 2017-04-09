@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import Header from '../Header/Header';
 import OneRoom from './OneRoom';
@@ -15,8 +16,14 @@ const filters = [
 export default class Book extends Component {
   state = {
     formIsOpened: false,
-    activeFilter: ''
+    activeFilter: '',
+    rooms: []
    }
+
+  componentDidMount() {
+    axios.get('http://localhost:8008/api/rooms')
+      .then(res => this.setState({ rooms: res.data }));
+  }
 
   toggleBookForm = () => {
     this.setState({formIsOpened: !this.state.formIsOpened});
@@ -42,11 +49,14 @@ export default class Book extends Component {
 
           <div class="row room-list">
 
-            <OneRoom
-              name={'MEETING ROOM NUMBA 3'}
-              title={'Long meeting title yeap'}
-              callBookForm={this.callBookForm}
-            />
+            { this.state.rooms.map((el, i) => {
+              return <OneRoom
+                      key={`room-${i}`}
+                      name={el.name}
+                      title={el.title}
+                      callBookForm={this.callBookForm}
+                    />;
+            })}
 
           </div>
         </div>
