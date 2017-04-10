@@ -8,17 +8,16 @@ export default class Filters extends Component {
   }
 
   render() {
-    const list = this.props.filterslist.map(filter => {
-      return <li key={filter.id}
-                 onClick={e => this.applyFilter(e, filter.value)}>
-                <a href="#">{filter.value}</a>
-             </li>;
-    });
 
     return (
       <div class="row filters">
         <ul>
-          {list}
+          {this.props.filterslist.map((el, i) => (
+                  <li key={`filter-${i}`}
+                      onClick={e => this.applyFilter(e, el.value)}>
+                      <a href="#">{el.value}</a>
+                   </li>
+          ))}
         </ul>
       </div>
     );

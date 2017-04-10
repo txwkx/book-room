@@ -14,7 +14,7 @@ roomRouter.get('/', (req, res) => {
       if(err) res.status(500).send(err);
       else res.json(rooms);
     });
-  });
+});
 
 roomRouter.get('/:id', (req, res) => {
     Room.findById(req.params.id, (err, room) => {
@@ -22,6 +22,6 @@ roomRouter.get('/:id', (req, res) => {
       if(!room) res.status(404).send('Room not found.');
       res.status(200).json(room);
     });
-  });
+});
 
 module.exports = roomRouter;
