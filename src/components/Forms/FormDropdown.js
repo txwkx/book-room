@@ -59,7 +59,7 @@ export default class FormDropdown extends Component {
             class='btn btn-default dropdown-toggle'
             type='button'
             onClick={this.open}>
-            {this.props.value} <span class='caret'></span>
+            {this.props.value || 'Select Room'} <span class='caret'></span>
           </button>
           <ul class='dropdown-menu'>
 

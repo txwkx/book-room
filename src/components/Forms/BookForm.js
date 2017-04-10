@@ -37,7 +37,7 @@ export default class BookForm extends Component {
 
                 <FormInput type='text' name='title' />
 
-                <FormDropdown name='room' value='Room #6' onChange={this.onInputChange} />
+                <FormDropdown name='room' value={`${this.props.room}`} onChange={this.onInputChange} />
 
                 <FormDropdown name='date' value='February 29' onChange={this.onInputChange} />
 
