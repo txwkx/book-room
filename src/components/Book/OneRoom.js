@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const OneRoom = ({ name, title, callBookForm }) => (
   <div class='col-md-3 col-sm-4 text-center'>

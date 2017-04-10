@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 const ddInstances = [];
 
@@ -39,13 +40,13 @@ export default class FormDropdown extends Component {
 
   render() {
 
-    /*const ddList = this.props.ddList.map(el => {
-      return <li
+    /*const ddList = this.props.ddList.map(el => (
+              <li
                 key={el.id}
                 onClick={this.assignValue(el.value)}>
                 <a>{el.name}</a>
               </li>
-    });*/
+    ));*/
 
 
     return(

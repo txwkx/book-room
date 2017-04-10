@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const OneMeeting = ({roomName, title, host, timeStart, timeEnd, status, toggleMeetingStatus}) => (
 
@@ -15,7 +16,7 @@ const OneMeeting = ({roomName, title, host, timeStart, timeEnd, status, toggleMe
       <a class='attend free' onClick={toggleMeetingStatus}>Attend</a>
     }
   </div>
-  
+
 );
 
 OneMeeting.propTypes = {
