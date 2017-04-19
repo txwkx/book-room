@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 require('./header.scss');
 
@@ -20,8 +20,8 @@ const Header = ({ openBookForm }) => (
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="active"><Link to="/book">Book</Link></li>
-          <li><Link to="/look">Look</Link></li>
+          <li class="active"><NavLink activeClassName="active" to="/book">Book</NavLink></li>
+          <li><NavLink activeClassName="active" to="/look">Look</NavLink></li>
         </ul>
       </div>
     </div>

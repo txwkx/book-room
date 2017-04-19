@@ -39,7 +39,7 @@ $black: #04040a;
         margin: 0 -15px;
         background: $black;
 
-        li a:hover, li a:focus { background-color: rgba(225,225,225,0.2); }
+        li a:hover, li a:focus, li a.active { background-color: rgba(225,225,225,0.2); }
 
         //li.active a { border-bottom: 2px solid #fff; }
 
