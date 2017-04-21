@@ -6,6 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --hot --inline --open",
     "server": "nodemon server.js"
+    "test": "jest --watch",
+    "coverage": "jest --coverage"
   },
   "repository": "https://github.com/txwkx/book-room.git",
   "author": "Todor Tsankov",
@@ -22,6 +24,8 @@
     "eslint": "^3.19.0",
     "eslint-loader": "^1.7.1",
     "file-loader": "^0.11.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^19.0.2",
     "node-sass": "^4.5.2",
     "resolve-url-loader": "^2.0.2",
     "sass-loader": "^6.0.3",
@@ -40,5 +44,14 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.1.1",
+    "react-test-renderer": "^15.5.4"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      ".scss$": "identity-obj-proxy"
+    },
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }
