@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without exploding 1`] = `
+<div
+  className="col-md-3 col-sm-4 text-center"
+>
+  <div
+    className="room"
+  >
+    <div
+      className="header"
+    >
+      <span />
+    </div>
+    <div
+      className="info"
+    >
+      <p
+        className="title"
+      >
+        Hell's Kitchen
+      </p>
+      <button
+        className="btn btn-success btn-block"
+        onClick={undefined}
+      >
+        BOOK
+      </button>
+    </div>
+  </div>
+</div>
+`;
