@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without exploding 1`] = `
+<nav
+  className="navbar navbar-inverse navbar-fixed-top"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="book-btn"
+    >
+      <button
+        className="btn btn-danger"
+        onClick={[Function]}
+      >
+        BOOK
+      </button>
+    </div>
+    <div
+      className="navbar-header"
+    >
+      <a
+        className="navbar-brand"
+        href="/"
+        onClick={[Function]}
+      >
+        LOGO
+      </a>
+      <button
+        aria-controls="navbar"
+        aria-expanded="false"
+        className="navbar-toggle collapsed"
+        data-target="#navbar"
+        data-toggle="collapse"
+        type="button"
+      >
+        <span
+          className="sr-only"
+        >
+          Toggle navigation
+        </span>
+        <span
+          className="icon-bar"
+        />
+        <span
+          className="icon-bar"
+        />
+        <span
+          className="icon-bar"
+        />
+      </button>
+    </div>
+    <div
+      className="navbar-collapse collapse"
+      id="navbar"
+    >
+      <ul
+        className="nav navbar-nav navbar-right"
+      >
+        <li
+          className="active"
+        >
+          <a
+            className={undefined}
+            href="/book"
+            onClick={[Function]}
+            style={undefined}
+          >
+            Book
+          </a>
+        </li>
+        <li>
+          <a
+            className={undefined}
+            href="/look"
+            onClick={[Function]}
+            style={undefined}
+          >
+            Look
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+`;

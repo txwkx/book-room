@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-require('./header.scss');
+import styles from './header.scss';
 
 const Header = ({ openBookForm }) => (
   <nav class="navbar navbar-inverse navbar-fixed-top">
