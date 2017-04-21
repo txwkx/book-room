@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without exploding 1`] = `
+<div
+  className="pick"
+>
+  <a
+    href="/look"
+    id="look"
+    onClick={[Function]}
+  >
+    <span
+      className="text"
+    >
+      <span
+        className="heading"
+      >
+        LOOK
+      </span>
+      <span>
+        Scroll through the upcoming events
+      </span>
+      <i
+        className="icon"
+      />
+    </span>
+  </a>
+  <a
+    href="/book"
+    id="book"
+    onClick={[Function]}
+  >
+    <span
+      className="text"
+    >
+      <span
+        className="heading"
+      >
+        BOOK
+      </span>
+      <span>
+        Browse through a list of rooms
+      </span>
+      <i
+        className="icon"
+      />
+    </span>
+  </a>
+</div>
+`;

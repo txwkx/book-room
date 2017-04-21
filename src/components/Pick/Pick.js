@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default ({ match }) => (
+export default () => (
   <div class='pick'>
     <Link id='look' to="/look">
       <span class='text'>
