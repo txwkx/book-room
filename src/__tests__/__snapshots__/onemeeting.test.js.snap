@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without exploding 1`] = `
+<div
+  className="meeting available"
+>
+  <p>
+    <span
+      className="time"
+    >
+       - 
+    </span>
+  </p>
+  <h4
+    className="title"
+  />
+  <p
+    className="author"
+  >
+    <span>
+      Host: 
+    </span>
+  </p>
+  <a
+    className="attend free"
+    onClick={undefined}
+  >
+    Attend
+  </a>
+</div>
+`;
