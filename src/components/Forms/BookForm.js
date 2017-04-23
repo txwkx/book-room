@@ -12,6 +12,10 @@ export default class BookForm extends Component {
 
   state = {}
 
+  componentDidUpdate(prevProps, prevState) {
+    if(!prevProps.isOpened) this.FormInput.focus();
+  }
+
   handleReservation = (e) => {
     e.preventDefault();
   }
@@ -20,7 +24,7 @@ export default class BookForm extends Component {
     this.props.closeBookForm();
   }
 
-  onInputChange(item, value){
+  onInputChange = (item, value) => {
     this.setState({ [item.term]: value});
     this.props.onChange(item.term, value);
   }
@@ -35,7 +39,11 @@ export default class BookForm extends Component {
           <div class='content'>
             <form action='#' id='book-form'>
 
-                <FormInput type='text' name='title' />
+                <FormInput
+                  type='text'
+                  name='title'
+                  ref={comp => {this.FormInput = comp;}}
+                   />
 
                 <FormDropdown name='room' value={`${this.props.room}`} onChange={this.onInputChange} />
 

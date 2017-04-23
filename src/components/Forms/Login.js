@@ -13,6 +13,10 @@ export default class Login extends Component {
     e.preventDefault();
   }
 
+  componentDidMount = () => {
+    this.FormInput.focus();
+  }
+
   render() {
     return(
       <div class='login'>
@@ -21,11 +25,19 @@ export default class Login extends Component {
           <div class='content'>
             <form action='#' id='login-form'>
 
-              <FormInput type='text' name='username' />
+              <FormInput
+                type='text'
+                name='username'
+                ref={comp => {this.FormInput = comp;}}
+                 />
 
-              <FormInput type='password' name='password' />
+              <FormInput
+                type='password'
+                name='password'
+                />
 
               <input type='submit' value='Login' class='btn' onClick={this.handleLogin} />
+              
               <p class='recover'><a href='#' onClick={this.recoverPassword}>Forgot password ?</a></p>
             </form>
           </div>

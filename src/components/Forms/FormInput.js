@@ -18,6 +18,10 @@ export default class FormInput extends Component {
         }
     }
 
+    focus = () => {
+      this.el.focus();
+    }
+
     render() {
         return (
             <div class={`form-group textinput ${this.state.isActive ? 'active': ''}`}>
@@ -27,6 +31,7 @@ export default class FormInput extends Component {
                 <input type={this.props.type}
                        name={this.props.name}
                        class='form-control'
+                       ref={el => {this.el = el;}}
                        onFocus={this.onFocusBlur}
                        onBlur={this.onFocusBlur}
                        onChange={this.props.onChange} />
