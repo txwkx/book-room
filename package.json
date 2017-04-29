@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --hot --inline --open",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
     "test": "jest --watch",
     "coverage": "jest --coverage"
   },
