@@ -37,7 +37,9 @@
   "dependencies": {
     "axios": "^0.16.1",
     "body-parser": "^1.17.1",
+    "enzyme": "^2.8.2",
     "express": "^4.15.2",
+    "moment": "^2.18.1",
     "mongoose": "^4.9.5",
     "nodemon": "^1.11.0",
     "prop-types": "^15.5.8",
