@@ -23,4 +23,7 @@ app.get('/', (req, res) => res.send('Welcome to the "BOOK ROOM" API'));
 const roomRouter = require('./server/roomRouter');
 app.use('/api/rooms', roomRouter);
 
+const meetingRouter = require('./server/meetingRouter');
+app.use('/api/meetings', meetingRouter);
+
 app.listen(port, () => console.log(`Server running on PORT: ${port}`));
