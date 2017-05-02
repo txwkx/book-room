@@ -54,8 +54,8 @@ export default class Book extends Component {
             { this.state.rooms.map((el, i) => {
               return <OneRoom
                       key={`room-${i}`}
-                      name={el.name}
-                      title={el.title}
+                      room={el.name}
+                      meeting={el.title}
                       callBookForm={() => this.toggleBookForm(el.name)}
                     />;
             })}
