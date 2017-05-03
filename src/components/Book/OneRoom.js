@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const OneRoom = ({ meeting, room, callBookForm }) => (
+const OneRoom = ({ meeting, room, roomId, callBookForm }) => (
   <div class='col-md-3 col-sm-4 text-center'>
     <div class='room'>
-      <div class='header'>
+      <Link class='header' to={{pathname: '/look', roomId: roomId }}>
         <span>{meeting}</span>
-      </div>
+      </Link>
       <div class='info'>
         <p class='title'>{room}</p>
         <button
@@ -22,6 +23,7 @@ const OneRoom = ({ meeting, room, callBookForm }) => (
 OneRoom.propTypes = {
   meeting: PropTypes.string,
   room: PropTypes.string.isRequired,
+  roomId: PropTypes.string.isRequired,
   callBookForm: PropTypes.func
 };
 
