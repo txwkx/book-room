@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --hot --inline --open",
     "server": "nodemon server.js",
-    "test": "jest --watch",
+    "test:watch": "jest --watch",
     "coverage": "jest --coverage"
   },
   "repository": "https://github.com/txwkx/book-room.git",

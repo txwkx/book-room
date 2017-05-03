@@ -55,6 +55,7 @@ export default class Book extends Component {
               return <OneRoom
                       key={`room-${i}`}
                       room={el.name}
+                      roomId={el._id}
                       meeting={el.title}
                       callBookForm={() => this.toggleBookForm(el.name)}
                     />;
