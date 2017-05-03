@@ -23,14 +23,22 @@ meetingRouter.get('/room/:id', (req, res) => {
     });
 });
 
-/*
+
 meetingRouter.get('/user/:id', (req, res) => {
     let query = {
-      roomID: req.params.id
+      attendees: ObjectId(req.params.id)
     };
 
-    //TODO: Check Attendees
+    meeting.find(query)
+    .populate('roomId')
+    .populate('hostId')
+    .populate('attendees')
+    .exec((err, meetings) => {
+      if(err) res.status(500).send(err);
+      if(!meetings) res.status(404).send('Meeting not found.');
+      else res.json(meetings);
+    });
 });
-*/
+
 
 module.exports = meetingRouter;
