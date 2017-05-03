@@ -1,12 +1,28 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import Header from '../Header/Header';
 import MeetingsList from './MeetingsList';
 
 export default class Look extends Component {
-  state = { scrolled: false }
+  state = {
+    scrolled: false,
+    userId: '59084dad7f34d201033dec31',
+    meetings: []
+  }
 
-  componentDidMount = () => { window.addEventListener('scroll', this.handleScroll); }
+  componentDidMount = () => {
+    window.addEventListener('scroll', this.handleScroll);
+    const { roomId } = this.props.location;
+    const { userId } = this.state;
+
+    const baseUrl = 'http://localhost:8008/api/meetings';
+    const queryUrl = roomId ? `room/${roomId}` : `user/${userId}`;
+
+    axios.get(`${baseUrl}/${queryUrl}`)
+         .then(res => this.setState({ meetings: res.data }));
+
+  }
 
   componentWillUnmount = () => { window.removeEventListener('scroll', this.handleScroll); }
 
@@ -42,6 +58,7 @@ export default class Look extends Component {
           </div>
 
           <MeetingsList
+            meetings={this.state.meetings}
             toggleMeetingStatus={this.toggleMeetingStatus}
             />
 
