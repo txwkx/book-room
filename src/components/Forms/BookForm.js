@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 import FormInput from './FormInput';
 import FormDropdown from './FormDropdown';
@@ -10,7 +11,14 @@ export default class BookForm extends Component {
       closeBookForm: PropTypes.func.isRequired
   }
 
-  state = {}
+  state = {
+    rooms: []
+  }
+
+  componentWillMount() {
+    axios.get('http://localhost:8008/api/rooms')
+      .then(res => this.setState({ rooms: res.data }));
+  };
 
   componentDidUpdate(prevProps, prevState) {
     if(!prevProps.isOpened) this.FormInput.focus();
@@ -30,9 +38,11 @@ export default class BookForm extends Component {
   }
 
   render() {
+    const { selectedDay, rooms } = this.state;
+    const { isOpened, room } = this.props;
 
     return (
-      <div class={`bookform ${this.props.isOpened ? 'opened' : ''}`}>
+      <div class={`bookform ${isOpened ? 'opened' : ''}`}>
         <div class='modal-backdrop' onClick={this.close}></div>
         <div class='popup'>
           <div class='header'>Schedule meeting</div>
@@ -43,17 +53,22 @@ export default class BookForm extends Component {
                   type='text'
                   name='title'
                   ref={comp => {this.FormInput = comp;}}
-                   />
+                  />
 
-                <FormDropdown name='room' value={`${this.props.room}`} onChange={this.onInputChange} />
+                <FormDropdown
+                  name='room'
+                  value={`${room}`}
+                  ddList={this.state.rooms}
+                  onChange={this.onRoomChange}
+                  />
 
-                <FormDropdown name='date' value='February 29' onChange={this.onInputChange} />
 
-                <FormDropdown name='time' value='19:00' onChange={this.onInputChange} />
-
-                <FormDropdown name='extend' value='30 min' onChange={this.onInputChange} />
-
-                <input type='submit' value='Claim Room' class='btn'onClick={this.handleReservation} />
+                <input
+                  type='submit'
+                  value='Claim Room'
+                  class='btn'
+                  onClick={this.handleReservation}
+                  />
 
             </form>
           </div>
