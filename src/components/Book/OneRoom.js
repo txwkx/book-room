@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const OneRoom = ({ meeting, room, roomId, callBookForm }) => (
   <div class='col-md-3 col-sm-4 text-center'>
     <div class='room'>
-      <Link class='header' to={{pathname: '/look', roomId: roomId }}>
+      <Link class='header' to={{pathname: `/look/${roomId}`, roomId: roomId }}>
         <span>{meeting}</span>
       </Link>
       <div class='info'>

@@ -21,15 +21,19 @@ export default class Book extends Component {
     rooms: []
    }
 
-  componentDidMount() {
+  componentWillMount() {
     axios.get('http://localhost:8008/api/rooms')
       .then(res => this.setState({ rooms: res.data }));
   }
 
-  toggleBookForm = (room) => {
+  toggleActiveRoom = (room) => {
     room = room || '';
     this.setState({activeRoom: room});
+  }
+
+  toggleBookForm = (room) => {
     this.setState({formIsOpened: !this.state.formIsOpened});
+    this.toggleActiveRoom(room);
   }
 
   applyFilter = (filter) => {
@@ -68,6 +72,7 @@ export default class Book extends Component {
           isOpened={this.state.formIsOpened}
           closeBookForm={this.toggleBookForm}
           room={this.state.activeRoom}
+          onChange={this.toggleActiveRoom}
         />
       </div>
     );
