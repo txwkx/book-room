@@ -39,30 +39,29 @@ export default class FormDropdown extends Component {
   }
 
   render() {
-
-    /*const ddList = this.props.ddList.map(el => (
-              <li
-                key={el.id}
-                onClick={this.assignValue(el.value)}>
-                <a>{el.name}</a>
-              </li>
-    ));*/
-
+    const { name, value, ddList } = this.props;
+    const { isOpened } = this.state;
 
     return(
       <div class='form-group'>
         <label class=''>
-          <span class='label-text'>{this.props.name}</span>
+          <span class='label-text'>{name}</span>
         </label>
-        <div class={`filter dropdown ${this.state.isOpened ? 'open' : ''}`}>
+        <div class={`filter dropdown ${isOpened ? 'open' : ''}`}>
           <button
             class='btn btn-default dropdown-toggle'
             type='button'
             onClick={this.open}>
-            {this.props.value || 'Select Room'} <span class='caret'></span>
+            {value || 'Select Room'} <span class='caret'></span>
           </button>
           <ul class='dropdown-menu'>
-
+            { ddList.map(el => (
+                      <li
+                        key={el._id}
+                        onClick={() => this.assignValue(el.name)}>
+                        <a>{el.name}</a>
+                      </li>
+            )) }
           </ul>
         </div>
       </div>
