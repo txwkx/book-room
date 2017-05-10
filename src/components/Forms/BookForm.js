@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import DayPicker from 'react-day-picker';
 import axios from 'axios';
+
+import styles from 'react-day-picker/lib/style.css';
 
 import FormInput from './FormInput';
 import FormDropdown from './FormDropdown';
@@ -12,6 +15,7 @@ export default class BookForm extends Component {
   }
 
   state = {
+    selectedDay: new Date(), // We set the selected default as today
     rooms: []
   }
 
@@ -32,14 +36,23 @@ export default class BookForm extends Component {
     this.props.closeBookForm();
   }
 
-  onInputChange = (item, value) => {
-    this.setState({ [item.term]: value});
-    this.props.onChange(item.term, value);
+  onRoomChange = (room) => {
+    this.props.onChange(room);
   }
+
+  handleDayClick = (day, { disabled, selected }) => {
+    if (disabled) {
+      return;
+    }
+    this.setState({
+      selectedDay: selected ? undefined : day,
+    });
+  };
 
   render() {
     const { selectedDay, rooms } = this.state;
     const { isOpened, room } = this.props;
+    const today = new Date();
 
     return (
       <div class={`bookform ${isOpened ? 'opened' : ''}`}>
@@ -62,6 +75,12 @@ export default class BookForm extends Component {
                   onChange={this.onRoomChange}
                   />
 
+                <DayPicker
+                  selectedDays={selectedDay}
+                  disabledDays={{ before: today }}
+                  fromMonth={new Date()}
+                  onDayClick={ this.handleDayClick }
+                  />
 
                 <input
                   type='submit'
