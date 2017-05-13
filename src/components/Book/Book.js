@@ -17,7 +17,7 @@ export default class Book extends Component {
   state = {
     formIsOpened: false,
     activeFilter: '',
-    activeRoom: '',
+    activeRoom: { id: '', name: '' },
     rooms: []
    }
 
@@ -26,14 +26,16 @@ export default class Book extends Component {
       .then(res => this.setState({ rooms: res.data }));
   }
 
-  toggleActiveRoom = (room) => {
-    room = room || '';
+  toggleActiveRoom = (roomId, roomName) => {
+    let room = {};
+    room['id'] = roomId || '';
+    room['name'] = roomName || '';
     this.setState({activeRoom: room});
   }
 
-  toggleBookForm = (room) => {
+  toggleBookForm = (roomId, roomName) => {
     this.setState({formIsOpened: !this.state.formIsOpened});
-    this.toggleActiveRoom(room);
+    this.toggleActiveRoom(roomId, roomName);
   }
 
   applyFilter = (filter) => {
@@ -58,10 +60,10 @@ export default class Book extends Component {
             { this.state.rooms.map((el, i) => {
               return <OneRoom
                       key={`room-${i}`}
-                      room={el.name}
+                      room={el.value}
                       roomId={el._id}
                       meeting={el.title}
-                      callBookForm={() => this.toggleBookForm(el.name)}
+                      callBookForm={() => this.toggleBookForm(el._id, el.value)}
                     />;
             })}
 
