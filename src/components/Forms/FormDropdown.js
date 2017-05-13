@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import shortid from 'shortid';
 
 const ddInstances = [];
 
@@ -31,9 +32,9 @@ export default class FormDropdown extends Component {
     this.setState({isOpened: false});
   }
 
-  assignValue = (val) => {
+  assignValue = (id=0, val) => {
     if(val != this.props.value){
-      this.props.onChange(val);
+      this.props.onChange(id, val);
     }
     this.close();
   }
@@ -52,14 +53,14 @@ export default class FormDropdown extends Component {
             class='btn btn-default dropdown-toggle'
             type='button'
             onClick={this.open}>
-            {value || 'Select Room'} <span class='caret'></span>
+            {value} <span class='caret'></span>
           </button>
           <ul class='dropdown-menu'>
             { ddList.map(el => (
                       <li
-                        key={el._id}
-                        onClick={() => this.assignValue(el.name)}>
-                        <a>{el.name}</a>
+                        key={shortid.generate()}
+                        onClick={() => this.assignValue(el._id, el.value)}>
+                        <a>{el.value}</a>
                       </li>
             )) }
           </ul>
