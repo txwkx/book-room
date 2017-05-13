@@ -47,7 +47,8 @@
     "react-day-picker": "^5.4.3",
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.1.1",
-    "react-test-renderer": "^15.5.4"
+    "react-test-renderer": "^15.5.4",
+    "shortid": "^2.2.8"
   },
   "jest": {
     "moduleNameMapper": {
