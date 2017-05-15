@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const port = process.env.PORT || 8008;
 const app = express();
 
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/bookroomAPI', (err) => {
   if(err) throw err;
 });
