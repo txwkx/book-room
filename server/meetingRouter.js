@@ -3,7 +3,7 @@ const mongoose = require('mongoose'),
       ObjectId = mongoose.Types.ObjectId;
 const user = require('./models/userModel');
 const room = require('./models/roomModel');
-const meeting = require('./models/meetingModel');
+const Meeting = require('./models/meetingModel');
 
 const meetingRouter = express.Router();
 
@@ -12,7 +12,7 @@ meetingRouter.get('/room/:id', (req, res) => {
       roomId: ObjectId(req.params.id)
     };
 
-    meeting.find(query)
+    Meeting.find(query)
     .populate('roomId')
     .populate('hostId')
     .populate('attendees')
@@ -29,7 +29,7 @@ meetingRouter.get('/user/:id', (req, res) => {
       attendees: ObjectId(req.params.id)
     };
 
-    meeting.find(query)
+    Meeting.find(query)
     .populate('roomId')
     .populate('hostId')
     .populate('attendees')
@@ -38,6 +38,24 @@ meetingRouter.get('/user/:id', (req, res) => {
       if(!meetings) res.status(404).send('Meeting not found.');
       else res.json(meetings);
     });
+});
+
+meetingRouter.post('/', (req, res) => {
+
+  let meeting = new Meeting();
+    meeting.roomId = req.body.room;
+    meeting.title = req.body.title;
+    meeting.startTime =  new Date(req.body.startT);
+    meeting.endTime = new Date(req.body.endT);
+    meeting.attendees = [];
+  // console.log(meeting);
+
+  meeting.save(err => {
+    console.log(err);
+    if(err) res.status(500).send(err);
+    else res.status(201).json({ message: 'Meeting created'});
+  });
+
 });
 
 
