@@ -125,6 +125,11 @@
       .filter {
         position: relative;
 
+        .dropdown-menu {
+          max-height: 160px;
+          overflow-y: auto;
+        }
+
         .dropdown-menu li {
           &:hover { cursor: pointer; }
         }

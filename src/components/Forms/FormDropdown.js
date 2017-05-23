@@ -10,8 +10,14 @@ export default class FormDropdown extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
+    isHidden: PropTypes.bool,
+    up: PropTypes.bool,
     ddList: PropTypes.array,
     onChange: PropTypes.func
+  }
+
+  static defaultProps = {
+    isHidden: false
   }
 
   componentDidMount = () => {
@@ -40,15 +46,15 @@ export default class FormDropdown extends Component {
   }
 
   render() {
-    const { name, value, ddList } = this.props;
+    const { name, isHidden, value, ddList, up } = this.props;
     const { isOpened } = this.state;
 
     return(
-      <div class='form-group'>
+      <div class={`form-group ${isHidden ? 'hidden' : ''}`}>
         <label class=''>
           <span class='label-text'>{name}</span>
         </label>
-        <div class={`filter dropdown ${isOpened ? 'open' : ''}`}>
+        <div class={`filter dropdown ${isOpened ? 'open' : ''} ${up ? 'dropup' : ''}`}>
           <button
             class='btn btn-default dropdown-toggle'
             type='button'
