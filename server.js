@@ -27,4 +27,7 @@ app.use('/api/rooms', roomRouter);
 const meetingRouter = require('./server/meetingRouter');
 app.use('/api/meetings', meetingRouter);
 
+const bookingRouter = require('./server/bookingRouter');
+app.use('/api/bookings', bookingRouter);
+
 app.listen(port, () => console.log(`Server running on PORT: ${port}`));
