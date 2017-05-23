@@ -2,11 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DayPicker from 'react-day-picker';
 import axios from 'axios';
+import moment from 'moment';
 
 import styles from 'react-day-picker/lib/style.css';
 
 import FormInput from './FormInput';
 import FormDropdown from './FormDropdown';
+
+let INTERVALS = [
+  '08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00',
+  '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30',
+  '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'
+];
 
 export default class BookForm extends Component {
   static propTypes = {
@@ -15,44 +22,107 @@ export default class BookForm extends Component {
   }
 
   state = {
-    selectedDay: new Date(), // We set the selected default as today
-    rooms: []
+    title: '',
+    rooms: [],
+    selectedDay: new Date(),
+    today: new Date(),
+    startT: '',
+    endT: '',
+    hideTime: true,
+    endArr: INTERVALS
   }
 
-  componentWillMount() {
+  /* LIFECYCLE METHODS */
+
+  componentWillMount = () => {
     axios.get('http://localhost:8008/api/rooms')
       .then(res => this.setState({ rooms: res.data }));
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate = (prevProps, prevState) => {
     if(!prevProps.isOpened) this.FormInput.focus();
   }
 
-  handleReservation = (e) => {
-    e.preventDefault();
+  /* INPUT CHANGES */
+
+  onTitleChange = title => {
+    this.setState({ title });
+  }
+
+  onRoomChange = (roomId, roomName) => {
+    this.props.onChange(roomId, roomName);
+    this.updateTimeSlots(roomId);
+  }
+
+  onDayChange = (day, { disabled }) => {
+    if (disabled) { return; }
+    this.setState({ selectedDay: day }, () => {
+      this.updateTimeSlots();
+    });
+  };
+
+  onStartTChange = (id, time) => {
+    const time_pos = INTERVALS.indexOf(time);
+    const end_time = INTERVALS.filter(el => INTERVALS.indexOf(el) > time_pos);
+
+    this.setState({ startT: time, endT: INTERVALS[time_pos+1], endArr: end_time });
+  }
+
+  onEndTChange = (id, time) => {
+    this.setState({ endT: time });
+  }
+
+  updateTimeSlots = (roomId) => {
+    const date = this.state.selectedDay;
+    const room = roomId || this.props.room.id;
+    if(date && room){
+      this.setState({ hideTime: false });
+    } else {
+      console.log('Trigger error');
+    }
+  }
+
+  mapTime2Obj = (timeArr) => {
+    return timeArr.map(el => ({ value: el }));
   }
 
   close = () => {
     this.props.closeBookForm();
+    //add reset
   }
 
-  onRoomChange = (room) => {
-    this.props.onChange(room);
-  }
+  /* HANDLE RESERVATION */
 
-  handleDayClick = (day, { disabled, selected }) => {
-    if (disabled) {
-      return;
-    }
-    this.setState({
-      selectedDay: selected ? undefined : day,
-    });
-  };
+  handleReservation = (e) => {
+    e.preventDefault();
+    const room = this.props.room.id;
+    const { selectedDay, startT, endT, title } = this.state;
+
+    //Mofidy variables
+    const day = selectedDay.toISOString().split('T')[0];
+
+    const startTime = new Date(`${day}T${startT}`).toISOString();
+    const endTime = new Date(`${day}T${endT}`).toISOString();
+    //toISO ignores timezone
+
+    const newMeeting = {
+      room: room,
+      title: title,
+      startT: startTime,
+      endT: endTime
+    };
+
+    // console.log(newMeeting);
+    // add state change to form after success + timeout to close
+    axios.post('http://localhost:8008/api/meetings', newMeeting)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  }
 
   render() {
-    const { selectedDay, rooms } = this.state;
+    // console.log('Book form rendered');
+    const { selectedDay, today, rooms, startT, endT, hideTime, endArr } = this.state;
     const { isOpened, room } = this.props;
-    const today = new Date();
 
     return (
       <div class={`bookform ${isOpened ? 'opened' : ''}`}>
@@ -66,21 +136,40 @@ export default class BookForm extends Component {
                   type='text'
                   name='title'
                   ref={comp => {this.FormInput = comp;}}
+                  onChange={ this.onTitleChange }
                   />
 
                 <FormDropdown
-                  name='room'
-                  value={`${room}`}
+                  name='Room'
+                  value={`${room.name}` || 'Select Room'}
                   ddList={this.state.rooms}
-                  onChange={this.onRoomChange}
+                  onChange={ this.onRoomChange }
                   />
 
                 <DayPicker
                   selectedDays={selectedDay}
                   disabledDays={{ before: today }}
                   fromMonth={new Date()}
-                  onDayClick={ this.handleDayClick }
+                  onDayClick={ this.onDayChange }
                   />
+
+               <FormDropdown
+                 name='Start Time'
+                 value={`${startT}` || 'HH:MM'}
+                 isHidden={hideTime}
+                 up={true}
+                 ddList={this.mapTime2Obj([...INTERVALS.slice(0, -1)])}
+                 onChange={ this.onStartTChange }
+                 />
+
+               <FormDropdown
+                 name='End Time'
+                 value={`${endT}` || 'HH:MM'}
+                 isHidden={hideTime}
+                 up={true}
+                 ddList={this.mapTime2Obj(endArr)}
+                 onChange={ this.onEndTChange }
+                 />
 
                 <input
                   type='submit'
