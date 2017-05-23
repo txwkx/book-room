@@ -43,6 +43,7 @@ export default class Book extends Component {
   }
 
   render() {
+    const filters = <Filters filterslist={filters} applyFilter={this.applyFilter} />;
 
     return (
       <div class='book'>
@@ -50,10 +51,7 @@ export default class Book extends Component {
 
         <div class="container-fluid content">
 
-          <Filters
-            filterslist={filters}
-            applyFilter={this.applyFilter}
-          />
+
 
           <div class="row room-list">
 
