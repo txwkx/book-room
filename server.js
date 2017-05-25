@@ -1,6 +1,7 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const express = require('express'),
+      mongoose = require('mongoose'),
+      bodyParser = require('body-parser'),
+      expressValidator = require('express-validator');
 
 const port = process.env.PORT || 8008;
 const app = express();
@@ -12,6 +13,7 @@ mongoose.connect('mongodb://localhost/bookroomAPI', (err) => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(expressValidator());
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");

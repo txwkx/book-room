@@ -1,3 +1,4 @@
+const util = require('util');
 const express = require('express');
 const mongoose = require('mongoose'),
       ObjectId = mongoose.Types.ObjectId;
@@ -42,18 +43,25 @@ meetingRouter.get('/user/:id', (req, res) => {
 
 meetingRouter.post('/', (req, res) => {
 
-  let meeting = new Meeting();
-    meeting.roomId = req.body.room;
-    meeting.title = req.body.title;
-    meeting.startTime =  new Date(req.body.startT);
-    meeting.endTime = new Date(req.body.endT);
-    meeting.attendees = [];
-  // console.log(meeting);
+  req.checkBody("title", "Invalid title").matches("^[0-9a-zA-Z ]+$");
 
-  meeting.save(err => {
-    console.log(err);
-    if(err) res.status(500).send(err);
-    else res.status(201).json({ message: 'Meeting created'});
+  req.getValidationResult().then((errors) => {
+    if(!errors.isEmpty()){
+      res.status(400).send('There have been validation errors:' + util.inspect(errors.array()));
+      return;
+    }
+    let meeting = new Meeting();
+        meeting.roomId = req.body.room;
+        meeting.title = req.body.title;
+        meeting.startTime =  new Date(req.body.startT);
+        meeting.endTime = new Date(req.body.endT);
+        meeting.attendees = [];
+    // console.log(meeting);
+
+    meeting.save(err => {
+      if(err) res.status(500).send(err);
+      else res.status(201).json({ message: 'Meeting created'});
+    });
   });
 
 });

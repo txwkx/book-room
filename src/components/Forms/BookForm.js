@@ -117,7 +117,7 @@ export default class BookForm extends Component {
     axios.post('http://localhost:8008/api/meetings', newMeeting)
       .then(res => {
         this.setState({ success: true });
-        // setTimeout(this.close, 1200);
+        setTimeout(this.close, 1200);
       })
       .catch(err => {
         console.log(err.response);
