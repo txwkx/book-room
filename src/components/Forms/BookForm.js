@@ -29,7 +29,8 @@ export default class BookForm extends Component {
     startT: '',
     endT: '',
     hideTime: true,
-    endArr: INTERVALS
+    endArr: INTERVALS,
+    success: false
   }
 
   initState = {}
@@ -101,9 +102,7 @@ export default class BookForm extends Component {
     const room = this.props.room.id;
     const { selectedDay, startT, endT, title } = this.state;
 
-    //Mofidy variables
     const day = selectedDay.toISOString().split('T')[0];
-
     const startTime = new Date(`${day}T${startT}`).toISOString();
     const endTime = new Date(`${day}T${endT}`).toISOString();
     //toISO ignores timezone
@@ -115,16 +114,19 @@ export default class BookForm extends Component {
       endT: endTime
     };
 
-    // console.log(newMeeting);
-    // add state change to form after success + timeout to close
     axios.post('http://localhost:8008/api/meetings', newMeeting)
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+      .then(res => {
+        this.setState({ success: true });
+        // setTimeout(this.close, 1200);
+      })
+      .catch(err => {
+        console.log(err.response);
+      });
   }
 
   render() {
     // console.log('Book form rendered');
-    const { selectedDay, today, rooms, startT, endT, hideTime, endArr } = this.state;
+    const { title, selectedDay, today, rooms, startT, endT, hideTime, endArr, success } = this.state;
     const { isOpened, room } = this.props;
 
     return (
@@ -175,12 +177,12 @@ export default class BookForm extends Component {
                  onChange={ this.onEndTChange }
                  />
 
-                <input
-                  type='submit'
-                  value='Claim Room'
-                  class='btn'
-                  onClick={this.handleReservation}
-                  />
+               {success ?
+                 <input type='submit' value='DONE' class='btn success' />
+                :
+                 <input type='submit' value='Claim Room' class='btn' onClick={this.handleReservation}/>
+                }
+
 
             </form>
           </div>
