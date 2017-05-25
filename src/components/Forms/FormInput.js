@@ -7,6 +7,7 @@ export default class FormInput extends Component {
     static propTypes = {
         name: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
+        value: PropTypes.string.isRequired,
         onChange: PropTypes.func
     }
 
@@ -34,6 +35,7 @@ export default class FormInput extends Component {
                 </label>
                 <input type={this.props.type}
                        name={this.props.name}
+                       value={this.props.value}
                        class='form-control'
                        ref={el => {this.el = el;}}
                        onFocus={this.onFocusBlur}

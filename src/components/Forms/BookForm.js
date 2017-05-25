@@ -32,11 +32,14 @@ export default class BookForm extends Component {
     endArr: INTERVALS
   }
 
+  initState = {}
   /* LIFECYCLE METHODS */
 
   componentWillMount = () => {
     axios.get('http://localhost:8008/api/rooms')
-      .then(res => this.setState({ rooms: res.data }));
+      .then(res => this.setState({ rooms: res.data }, () => {
+        this.initState = this.state;
+      }));
   };
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -88,7 +91,7 @@ export default class BookForm extends Component {
 
   close = () => {
     this.props.closeBookForm();
-    //add reset
+    this.setState(this.initState);
   }
 
   /* HANDLE RESERVATION */
@@ -134,7 +137,8 @@ export default class BookForm extends Component {
 
                 <FormInput
                   type='text'
-                  name='title'
+                  name='Title'
+                  value={title}
                   ref={comp => {this.FormInput = comp;}}
                   onChange={ this.onTitleChange }
                   />
