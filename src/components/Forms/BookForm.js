@@ -17,8 +17,8 @@ let INTERVALS = [
 
 export default class BookForm extends Component {
   static propTypes = {
-      isOpened: PropTypes.bool.isRequired,
-      closeBookForm: PropTypes.func.isRequired
+    isOpened: PropTypes.bool.isRequired,
+    closeBookForm: PropTypes.func.isRequired
   }
 
   state = {
@@ -29,7 +29,7 @@ export default class BookForm extends Component {
     endT: '',
     showTime: false,
     endArr: INTERVALS,
-    success: false
+    formStatus: ''
   }
 
   initState = {}
@@ -49,7 +49,7 @@ export default class BookForm extends Component {
   /* INPUT CHANGES */
 
   onTitleChange = title => {
-    this.setState({ title });
+    this.setState({ title: title, formStatus: '' });
   }
 
   onRoomChange = (roomId, roomName) => {
@@ -115,17 +115,17 @@ export default class BookForm extends Component {
 
     axios.post('http://localhost:8008/api/meetings', newMeeting)
       .then(res => {
-        this.setState({ success: true });
+        this.setState({ formStatus: 'success' });
         setTimeout(this.close, 1200);
       })
       .catch(err => {
-        console.log(err.response);
+        this.setState({ formStatus: 'error' });
       });
   }
 
   render() {
     // console.log('Book form rendered');
-    const { title, selectedDay, rooms, startT, endT, showTime, endArr, success } = this.state;
+    const { title, selectedDay, rooms, startT, endT, showTime, endArr, formStatus } = this.state;
     const { isOpened, room } = this.props;
 
     return (
@@ -134,7 +134,7 @@ export default class BookForm extends Component {
         <div class='popup'>
           <div class='header'>Schedule meeting</div>
           <div class='content'>
-            <form action='#' id='book-form'>
+            <form action='#' id='book-form' class={formStatus}>
 
                 <FormInput
                   name='Title'
@@ -157,7 +157,8 @@ export default class BookForm extends Component {
                   onDayClick={ this.onDayChange }
                   />
 
-                { showTime && <FormDropdown
+                { showTime &&
+                  <FormDropdown
                    name='Start Time'
                    value={`${startT}` || 'HH:MM'}
                    up={true}
@@ -175,10 +176,8 @@ export default class BookForm extends Component {
                    />
                 }
 
-               {success ?
-                 <input type='submit' value='DONE' class='btn success' />
-                :
-                 <input type='submit' value='Claim Room' class='btn' onClick={this.handleReservation}/>
+                { title && room && startT && endT &&
+                  <input type='submit' value='Claim Room' class='btn' onClick={this.handleReservation}/>
                 }
 
 

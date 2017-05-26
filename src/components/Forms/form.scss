@@ -154,6 +154,27 @@
         }
       }
     }
+
+    .error {
+      .active {
+        .label-control {
+          &:after {
+            border-bottom: 2px solid $red;
+          }
+          .label-text {
+            color: $red !important;
+          }
+        }
+      }
+    }
+
+    .success {
+      input.btn[type="submit"] {
+          background-color: $green;
+          border-color: $green;
+          color: #fff;
+      }
+    }
   }
 
   .input-field label:before{
@@ -187,12 +208,6 @@
 
     &:hover {
       background-color: $blue;
-      color: #fff;
-    }
-
-    &.success {
-      background-color: $green;
-      border-color: $green;
       color: #fff;
     }
   }
