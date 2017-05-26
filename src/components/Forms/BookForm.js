@@ -25,10 +25,9 @@ export default class BookForm extends Component {
     title: '',
     rooms: [],
     selectedDay: new Date(),
-    today: new Date(),
     startT: '',
     endT: '',
-    hideTime: true,
+    showTime: false,
     endArr: INTERVALS,
     success: false
   }
@@ -80,7 +79,7 @@ export default class BookForm extends Component {
     const date = this.state.selectedDay;
     const room = roomId || this.props.room.id;
     if(date && room){
-      this.setState({ hideTime: false });
+      this.setState({ showTime: true });
     } else {
       console.log('Trigger error');
     }
@@ -126,7 +125,7 @@ export default class BookForm extends Component {
 
   render() {
     // console.log('Book form rendered');
-    const { title, selectedDay, today, rooms, startT, endT, hideTime, endArr, success } = this.state;
+    const { title, selectedDay, rooms, startT, endT, showTime, endArr, success } = this.state;
     const { isOpened, room } = this.props;
 
     return (
@@ -138,7 +137,6 @@ export default class BookForm extends Component {
             <form action='#' id='book-form'>
 
                 <FormInput
-                  type='text'
                   name='Title'
                   value={title}
                   ref={comp => {this.FormInput = comp;}}
@@ -154,28 +152,28 @@ export default class BookForm extends Component {
 
                 <DayPicker
                   selectedDays={selectedDay}
-                  disabledDays={{ before: today }}
+                  disabledDays={{ before: new Date() }}
                   fromMonth={new Date()}
                   onDayClick={ this.onDayChange }
                   />
 
-               <FormDropdown
-                 name='Start Time'
-                 value={`${startT}` || 'HH:MM'}
-                 isHidden={hideTime}
-                 up={true}
-                 ddList={this.mapTime2Obj([...INTERVALS.slice(0, -1)])}
-                 onChange={ this.onStartTChange }
-                 />
+                { showTime && <FormDropdown
+                   name='Start Time'
+                   value={`${startT}` || 'HH:MM'}
+                   up={true}
+                   ddList={this.mapTime2Obj([...INTERVALS.slice(0, -1)])}
+                   onChange={ this.onStartTChange }
+                   />
+                }
 
-               <FormDropdown
-                 name='End Time'
-                 value={`${endT}` || 'HH:MM'}
-                 isHidden={hideTime}
-                 up={true}
-                 ddList={this.mapTime2Obj(endArr)}
-                 onChange={ this.onEndTChange }
-                 />
+                { showTime && <FormDropdown
+                   name='End Time'
+                   value={`${endT}` || 'HH:MM'}
+                   up={true}
+                   ddList={this.mapTime2Obj(endArr)}
+                   onChange={ this.onEndTChange }
+                   />
+                }
 
                {success ?
                  <input type='submit' value='DONE' class='btn success' />

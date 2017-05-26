@@ -5,18 +5,21 @@ export default class FormInput extends Component {
     state = { isActive: false }
 
     static propTypes = {
-        name: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        value: PropTypes.string.isRequired,
-        onChange: PropTypes.func
+      name: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired,
+      onChange: PropTypes.func
+    }
+
+    static defaultProps = {
+      type: 'text'
     }
 
     onFocusBlur = (e) => {
-        if (e.type === 'focus' || e.target.value.length > 0) {
-            this.setState({isActive: true});
-        } else {
-            this.setState({isActive: false});
-        }
+      if (e.type === 'focus' || e.target.value.length > 0) {
+          this.setState({isActive: true});
+      } else {
+          this.setState({isActive: false});
+      }
     }
 
     focus = () => {
@@ -28,20 +31,23 @@ export default class FormInput extends Component {
     }
 
     render() {
-        return (
-            <div class={`form-group textinput ${this.state.isActive ? 'active': ''}`}>
-                <label class='label-control'>
-                    <span class='label-text'>{this.props.name}</span>
-                </label>
-                <input type={this.props.type}
-                       name={this.props.name}
-                       value={this.props.value}
-                       class='form-control'
-                       ref={el => {this.el = el;}}
-                       onFocus={this.onFocusBlur}
-                       onBlur={this.onFocusBlur}
-                       onChange={this.assignValue} />
-            </div>
-        );
+      const { name, type, value } = this.props;
+      const { isActive } = this.state;
+
+      return (
+          <div class={`form-group textinput ${isActive ? 'active': ''}`}>
+              <label class='label-control'>
+                  <span class='label-text'>{name}</span>
+              </label>
+              <input type={type}
+                     name={name}
+                     value={value}
+                     class='form-control'
+                     ref={el => {this.el = el;}}
+                     onFocus={this.onFocusBlur}
+                     onBlur={this.onFocusBlur}
+                     onChange={this.assignValue} />
+          </div>
+      );
     }
 }
