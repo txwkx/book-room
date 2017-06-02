@@ -11,6 +11,7 @@ export default class FormDropdown extends Component {
     name: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
     up: PropTypes.bool,
+    disabled: PropTypes.bool,
     ddList: PropTypes.array,
     onChange: PropTypes.func
   }
@@ -41,7 +42,7 @@ export default class FormDropdown extends Component {
   }
 
   render() {
-    const { name, value, ddList, up } = this.props;
+    const { name, value, ddList, up, disabled } = this.props;
     const { isOpened } = this.state;
 
     return(
@@ -53,6 +54,7 @@ export default class FormDropdown extends Component {
           <button
             class='btn btn-default dropdown-toggle'
             type='button'
+            disabled={disabled}
             onClick={this.open}>
             {value} <span class='caret'></span>
           </button>

@@ -157,28 +157,25 @@ export default class BookForm extends Component {
                   onDayClick={ this.onDayChange }
                   />
 
-                { showTime &&
                   <FormDropdown
                    name='Start Time'
                    value={`${startT}` || 'HH:MM'}
                    up={true}
+                   disabled={!showTime}
                    ddList={this.mapTime2Obj([...INTERVALS.slice(0, -1)])}
                    onChange={ this.onStartTChange }
                    />
-                }
 
-                { showTime && <FormDropdown
+                 <FormDropdown
                    name='End Time'
                    value={`${endT}` || 'HH:MM'}
                    up={true}
+                   disabled={!showTime}
                    ddList={this.mapTime2Obj(endArr)}
                    onChange={ this.onEndTChange }
                    />
-                }
 
-                { title && room && startT && endT &&
-                  <input type='submit' value='Claim Room' class='btn' onClick={this.handleReservation}/>
-                }
+                <input type='submit' value='Claim Room' disabled={!(title && room && startT && endT)} class='btn' onClick={this.handleReservation}/>
 
 
             </form>

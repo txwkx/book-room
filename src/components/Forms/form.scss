@@ -206,10 +206,18 @@
     transition: all 0.15s ease-in-out 0s;
     width: 100%;
 
-    &:hover {
+    &:hover:not([disabled]) {
       background-color: $blue;
       color: #fff;
     }
+
+    &:disabled {
+        border-color: $grey-light;
+        color: $grey-light;
+
+        &:hover { cursor: not-allowed; }
+    }
+
   }
 
   .recover {
