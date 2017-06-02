@@ -21,6 +21,10 @@ export default class BookForm extends Component {
     closeBookForm: PropTypes.func.isRequired
   }
 
+   static contextTypes = {
+     userId: PropTypes.string.isRequired
+   };
+
   state = {
     title: '',
     rooms: [],
@@ -100,6 +104,7 @@ export default class BookForm extends Component {
     e.preventDefault();
     const room = this.props.room.id;
     const { selectedDay, startT, endT, title } = this.state;
+    const { userId } = this.context;
 
     const day = selectedDay.toISOString().split('T')[0];
     const startTime = new Date(`${day}T${startT}`).toISOString();

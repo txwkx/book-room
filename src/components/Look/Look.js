@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import Header from '../Header/Header';
@@ -7,14 +8,17 @@ import MeetingsList from './MeetingsList';
 export default class Look extends Component {
   state = {
     scrolled: false,
-    userId: '59084dad7f34d201033dec31',
     meetings: []
   }
+
+  static contextTypes = {
+    userId: PropTypes.string.isRequired
+  };
 
   componentDidMount = () => {
     window.addEventListener('scroll', this.handleScroll);
     const { roomId } = this.props.location;
-    const { userId } = this.state;
+    const { userId } = this.context;
 
     const baseUrl = 'http://localhost:8008/api/meetings';
     const queryUrl = roomId ? `room/${roomId}` : `user/${userId}`;
