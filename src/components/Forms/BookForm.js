@@ -31,7 +31,6 @@ export default class BookForm extends Component {
     selectedDay: new Date(),
     startT: '',
     endT: '',
-    showTime: false,
     endArr: INTERVALS,
     formStatus: ''
   }
@@ -58,14 +57,11 @@ export default class BookForm extends Component {
 
   onRoomChange = (roomId, roomName) => {
     this.props.onChange(roomId, roomName);
-    this.updateTimeSlots(roomId);
   }
 
   onDayChange = (day, { disabled }) => {
     if (disabled) { return; }
-    this.setState({ selectedDay: day }, () => {
-      this.updateTimeSlots();
-    });
+    this.setState({ selectedDay: day });
   };
 
   onStartTChange = (id, time) => {
@@ -79,15 +75,6 @@ export default class BookForm extends Component {
     this.setState({ endT: time });
   }
 
-  updateTimeSlots = (roomId) => {
-    const date = this.state.selectedDay;
-    const room = roomId || this.props.room.id;
-    if(date && room){
-      this.setState({ showTime: true });
-    } else {
-      console.log('Trigger error');
-    }
-  }
 
   mapTime2Obj = (timeArr) => {
     return timeArr.map(el => ({ value: el }));
@@ -132,7 +119,7 @@ export default class BookForm extends Component {
 
   render() {
     // console.log('Book form rendered');
-    const { title, selectedDay, rooms, startT, endT, showTime, endArr, formStatus } = this.state;
+    const { title, selectedDay, rooms, startT, endT, endArr, formStatus } = this.state;
     const { isOpened, room } = this.props;
 
     return (
@@ -168,7 +155,7 @@ export default class BookForm extends Component {
                    name='Start Time'
                    value={`${startT}` || 'HH:MM'}
                    up={true}
-                   disabled={!showTime}
+                   disabled={!Boolean(room.id && selectedDay)}
                    ddList={this.mapTime2Obj([...INTERVALS.slice(0, -1)])}
                    onChange={ this.onStartTChange }
                    />
@@ -177,7 +164,7 @@ export default class BookForm extends Component {
                    name='End Time'
                    value={`${endT}` || 'HH:MM'}
                    up={true}
-                   disabled={!showTime}
+                   disabled={!Boolean(room.id && selectedDay)}
                    ddList={this.mapTime2Obj(endArr)}
                    onChange={ this.onEndTChange }
                    />
