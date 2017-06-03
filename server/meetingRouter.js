@@ -53,9 +53,10 @@ meetingRouter.post('/', (req, res) => {
     let meeting = new Meeting();
         meeting.roomId = req.body.room;
         meeting.title = req.body.title;
+        meeting.hostId = req.body.host;
         meeting.startTime =  new Date(req.body.startT);
         meeting.endTime = new Date(req.body.endT);
-        meeting.attendees = [];
+        meeting.attendees = req.body.attendees;
     // console.log(meeting);
 
     meeting.save(err => {

@@ -115,7 +115,9 @@ export default class BookForm extends Component {
       room: room,
       title: title,
       startT: startTime,
-      endT: endTime
+      endT: endTime,
+      host: userId,
+      attendees: [userId]
     };
 
     axios.post('http://localhost:8008/api/meetings', newMeeting)
