@@ -14,9 +14,7 @@ meetingRouter.get('/room/:id', (req, res) => {
     };
 
     Meeting.find(query)
-    .populate('roomId')
-    .populate('hostId')
-    .populate('attendees')
+    .populate('roomId hostId attendees').sort('startTime')
     .exec((err, meetings) => {
       if(err) res.status(500).send(err);
       if(!meetings) res.status(404).send('Meeting not found.');
@@ -31,9 +29,7 @@ meetingRouter.get('/user/:id', (req, res) => {
     };
 
     Meeting.find(query)
-    .populate('roomId')
-    .populate('hostId')
-    .populate('attendees')
+    .populate('roomId hostId attendees').sort('startTime')
     .exec((err, meetings) => {
       if(err) res.status(500).send(err);
       if(!meetings) res.status(404).send('Meeting not found.');
