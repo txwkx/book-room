@@ -1,13 +1,21 @@
-.login {
-  background: {
-    image: url('./images/room.jpg');
-    repeat: no-repeat;
-    size: cover;
-    position: center;
-    blend-mode: luminosity;
+.login, .signup {
+
+  &:before {
+    content: "";
+    left: 0;
+    right: 0;
+    height: 100vh;
+    position: fixed;
+    @include blur(5px);
+
+    background: {
+      image: url('./images/room.jpg');
+      repeat: no-repeat;
+      size: cover;
+      position: center;
+      blend-mode: luminosity;
+    }
   }
-  height: 100vh;
-  position: relative;
 
   .popup { margin-top: 10vh; }
 
@@ -60,6 +68,18 @@
     overflow: hidden;
     position: relative;
     padding: 40px;
+
+    p {
+      font-size: 16px;
+      text-align: center;
+      margin: 10px 0;
+      color: #175690;
+    }
+
+    .error-msg {
+      color: $red;
+    }
+
 
     .form-group {
       margin-bottom: 15px;
@@ -224,10 +244,4 @@
 
   }
 
-  .recover {
-    font-size: 16px;
-    text-align: center;
-    margin: 10px 0;
-    color: #175690;
-  }
 }
