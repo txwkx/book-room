@@ -23,6 +23,7 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => res.send('Welcome to the "BOOK ROOM" API'));
 
+require('./server/authRouter')(app, passport);
 const roomRouter = require('./server/roomRouter');
 app.use('/api/rooms', roomRouter);
 
