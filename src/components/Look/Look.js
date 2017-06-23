@@ -4,11 +4,14 @@ import axios from 'axios';
 
 import Header from '../Header/Header';
 import MeetingsList from './MeetingsList';
+import BookForm from '../Forms/BookForm';
 
 export default class Look extends Component {
   state = {
     scrolled: false,
-    meetings: []
+    meetings: [],
+    formIsOpened: false,
+    activeRoom: { id: '', name: '' }
   }
 
   static contextTypes = {
@@ -43,11 +46,18 @@ export default class Look extends Component {
     e.preventDefault();
   }
 
+  toggleBookForm = (roomId, roomName) => {
+    this.setState({formIsOpened: !this.state.formIsOpened});
+    this.toggleActiveRoom(roomId, roomName);
+  }
+
   render() {
+    const { roomId } = this.props.location;
 
     return (
+    <div class='look'>
       <div class={`wrap ${this.state.scrolled ? 'scrolled' : ''}`}>
-        <Header />
+        <Header openBookForm={this.toggleBookForm} />
 
         <div class='room-photo'></div>
 
@@ -56,7 +66,7 @@ export default class Look extends Component {
             <div class='container'>
 
               <h3 class='title'>All meetings</h3>
-              <p>February 29th</p>
+              {roomId && <p>{this.props.location.roomId}</p>}
 
             </div>
           </div>
@@ -66,7 +76,15 @@ export default class Look extends Component {
             toggleMeetingStatus={this.toggleMeetingStatus}
             />
 
+          </div>
         </div>
+
+        <BookForm
+          isOpened={this.state.formIsOpened}
+          closeBookForm={this.toggleBookForm}
+          room={this.state.activeRoom}
+          onChange={this.toggleActiveRoom}
+        />
       </div>
     );
   }
