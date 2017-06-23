@@ -1,16 +1,43 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
+import axios from 'axios';
 
 import FormInput from './FormInput';
 
-export default class Login extends Component {
+class Login extends Component {
   state = {}
 
   handleLogin = (e) => {
     e.preventDefault();
+    const { username, password } = this.state;
+    this.setState({error: ''});
+
+    const userData = {
+      username: username,
+      password: password
+    };
+
+    axios.post('http://localhost:8008/login', userData)
+      .then(res => {
+        const status = res.data.success;
+        if(!status) {
+          this.setState({error : res.data.message});
+        } else {
+          this.props.history.push('/');
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
-  recoverPassword = (e) => {
-    e.preventDefault();
+  attrChangeUn = (username) => {
+    this.setState({username});
+  }
+
+  attrChangePwd = (password) => {
+    this.setState({password});
   }
 
   componentDidMount = () => {
@@ -18,27 +45,32 @@ export default class Login extends Component {
   }
 
   render() {
+    const { error } = this.state;
     return(
       <div class='login'>
         <div class='popup'>
           <div class='header'>Welcome Back</div>
           <div class='content'>
-            <form action='#' id='login-form'>
+            <form action="http://localhost:8008/login" method="post" id='login-form'>
 
               <FormInput
                 type='text'
                 name='username'
                 ref={comp => {this.FormInput = comp;}}
+                onChange={ this.attrChangeUn }
                  />
 
               <FormInput
                 type='password'
                 name='password'
+                onChange={ this.attrChangePwd }
                 />
 
+              <p class='error-msg'>{error}</p>
+
               <input type='submit' value='Login' class='btn' onClick={this.handleLogin} />
-              
-              <p class='recover'><a href='#' onClick={this.recoverPassword}>Forgot password ?</a></p>
+
+              <p>Need an account? <Link to="/signup">Signup</Link></p>
             </form>
           </div>
         </div>
@@ -46,3 +78,5 @@ export default class Login extends Component {
     );
   }
 }
+
+export default withRouter(Login);
