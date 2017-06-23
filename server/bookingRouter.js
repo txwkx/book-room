@@ -1,7 +1,8 @@
-const express = require('express');
-const moment = require('moment');
+const express  = require('express');
+const moment   = require('moment');
 const mongoose = require('mongoose'),
       ObjectId = mongoose.Types.ObjectId;
+
 const booking = require('./models/bookingModel');
 
 const bookingRouter = express.Router();

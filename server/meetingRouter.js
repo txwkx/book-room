@@ -1,10 +1,11 @@
-const util = require('util');
-const express = require('express');
+const util     = require('util');
+const express  = require('express');
 const mongoose = require('mongoose'),
       ObjectId = mongoose.Types.ObjectId;
-const user = require('./models/userModel');
-const room = require('./models/roomModel');
-const Meeting = require('./models/meetingModel');
+      
+const user     = require('./models/userModel');
+const room     = require('./models/roomModel');
+const Meeting  = require('./models/meetingModel');
 
 const meetingRouter = express.Router();
 

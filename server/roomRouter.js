@@ -1,7 +1,8 @@
-const express = require('express');
+const express  = require('express');
 const mongoose = require('mongoose'),
       ObjectId = mongoose.Types.ObjectId;
-const room = require('./models/roomModel');
+
+const room     = require('./models/roomModel');
 
 const roomRouter = express.Router();
 

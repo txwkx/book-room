@@ -6,7 +6,7 @@ export default class FormInput extends Component {
 
     static propTypes = {
       name: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
+      value: PropTypes.string,
       onChange: PropTypes.func
     }
 
