@@ -32,8 +32,7 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => res.send('Welcome to the "BOOK ROOM" API'));
 
-require('./server/passport/local-signup')(passport);
-require('./server/passport/local-login')(passport);
+require('./server/passport/local')(passport);
 
 require('./server/authRouter')(app, passport);
 
