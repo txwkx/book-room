@@ -70,7 +70,7 @@ class Signup extends Component {
 
               <input type='submit' value='Signup' class='btn' onClick={this.handleSignup} />
 
-              <p>Already have an account? <Link to="/login">Login</Link></p>
+              <p>Have an account? <Link to="/login">Login</Link></p>
             </form>
           </div>
         </div>

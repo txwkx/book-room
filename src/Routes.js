@@ -9,7 +9,7 @@ import Look from './components/Look/Look';
 import Pick from './components/Pick/Pick';
 import FoF from './components/404';
 
-class Layout extends Component {
+class Routes extends Component {
 
   static childContextTypes = {
      userId: PropTypes.string.isRequired
@@ -32,4 +32,4 @@ class Layout extends Component {
 
 }
 
-export default Layout;
+export default Routes;

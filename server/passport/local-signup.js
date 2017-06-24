@@ -26,7 +26,7 @@ module.exports = (passport) => {
       if (err) return done(err);
 
       if (user) {
-        return done(null, false, {message: 'That email is already taken'});
+        return done(null, false, {message: 'That username is already taken'});
 
       } else {
 

@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Layout from './Layout';
+import Routes from './Routes';
 
 import './main.scss';
 
 const root = (
   <Router>
-    <Route path='/' component={Layout}></Route>
+    <Route path='/' component={Routes}></Route>
   </Router>
 );
 

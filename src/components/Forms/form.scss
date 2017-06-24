@@ -1,3 +1,39 @@
+@mixin form-style($bgi, $bgc, $color){
+  &:before {
+    background-image: $bgi;
+    background-color: $bgc;
+  }
+
+  .popup {
+    .header {
+      background: $color;
+    }
+
+    input.btn[type="submit"] {
+      border-color: $color;
+      color: $color;
+
+      &:hover:not([disabled]) {
+        background-color: $color;
+      }
+    }
+
+    .content {
+      .form-group {
+          .label-control  {
+            &:after {
+              border-color: $color;
+            }
+        }
+        &.active {
+            .label-text { color: $color !important; }
+          }
+        }
+      }
+    }
+  }
+
+
 .login, .signup {
 
   &:before {
@@ -6,19 +42,25 @@
     right: 0;
     height: 100vh;
     position: fixed;
-    @include blur(5px);
-
     background: {
-      image: url('./images/room.jpg');
       repeat: no-repeat;
       size: cover;
       position: center;
       blend-mode: luminosity;
     }
+    @include blur(7px);
   }
 
   .popup { margin-top: 10vh; }
 
+}
+
+.login, .book {
+  @include form-style(url('./images/room.jpg'), rgba(42, 167, 213, 0.5), #2aa7d5);
+}
+
+.signup {
+  @include form-style(url('./images/room5.jpg'), rgba(82, 209, 164, 0.5), #52d1a4);
 }
 
 .bookform {
@@ -61,7 +103,6 @@
     padding: 30px 0;
     text-align: center;
     text-transform: uppercase;
-    background: $blue;
   }
 
   .content {
@@ -73,7 +114,6 @@
       font-size: 16px;
       text-align: center;
       margin: 10px 0;
-      color: #175690;
     }
 
     .error-msg {
@@ -120,7 +160,7 @@
         }
 
         &:after {
-          border-bottom: 2px solid $blue;
+          border-bottom: 2px solid;
           @include transform(translate3d(-100%, 0, 0));
           @include transition(transform 0.3s);
         }
@@ -168,7 +208,6 @@
 
           .label-text {
             opacity: 1;
-            color: $blue !important;
             @include transform(scale(0.9));
           }
         }
@@ -216,9 +255,8 @@
 
   input.btn[type="submit"] {
     background-color: #fff;
-    border: 2px solid $blue;
+    border: 2px solid;
     border-radius: 2px;
-    color: $blue;
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
@@ -231,7 +269,6 @@
     width: 100%;
 
     &:hover:not([disabled]) {
-      background-color: $blue;
       color: #fff;
     }
 
