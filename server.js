@@ -5,12 +5,13 @@ const express          = require('express'),
       expressValidator = require('express-validator'),
       passport         = require('passport'),
       session          = require('express-session');
+const config           = require('./server/config');
 
 const port = process.env.PORT || 8008;
 const app = express();
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/bookroomAPI', (err) => {
+mongoose.connect(config.dbURL, (err) => {
   if(err) throw err;
 });
 
