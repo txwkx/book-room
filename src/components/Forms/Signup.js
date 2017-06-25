@@ -45,7 +45,7 @@ class Signup extends Component {
   }
 
   render() {
-    const { error } = this.state;
+    const { error, username, password } = this.state;
     return(
       <div class='signup'>
         <div class='popup'>
@@ -68,7 +68,13 @@ class Signup extends Component {
 
               <p class='error-msg'>{error}</p>
 
-              <input type='submit' value='Signup' class='btn' onClick={this.handleSignup} />
+              <input
+                type='submit'
+                value='Signup'
+                class='btn btn-form'
+                disabled={!(username && password)}
+                onClick={this.handleSignup}
+                />
 
               <p>Have an account? <Link to="/login">Login</Link></p>
             </form>

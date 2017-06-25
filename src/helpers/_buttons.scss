@@ -1,0 +1,43 @@
+//
+// Buttons
+// ---------------
+
+.btn {
+  text-transform: uppercase;
+  transition: all 0.15s ease-in-out 0s;
+  &:active:focus, &:active:hover, &:focus, &:active, &:hover {
+    outline: none;
+  }
+}
+
+.btn-form {
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  margin: 5px 0;
+  overflow: hidden;
+  padding: 10px;
+  width: 100%;
+
+  &:hover:not([disabled]) { color: #fff; }
+
+  &:disabled {
+      border-color: $grey-light !important;
+      color: $grey-light !important;
+
+      &:hover {
+        cursor: not-allowed;
+        background: #fff !important;
+      }
+  }
+}
+
+.btn-green {
+  @include color-button($green);
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: $red;
+  border: none;
+}

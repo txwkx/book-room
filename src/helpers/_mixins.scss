@@ -47,9 +47,49 @@
   }
   color: $color;
   text-transform: $transform;
-}
+};
 
 @mixin block-setting($position: relative, $color: #fff) {
   position: $position;
   background-color: $color;
+};
+
+@mixin form-style($bgi, $bgc, $color){
+  &:before {
+    background-image: $bgi;
+    background-color: $bgc;
+  }
+
+  .popup {
+    .header { background: $color; }
+
+    input.btn[type="submit"] {
+      @include color-button($color);
+    }
+
+    .content {
+      .form-group {
+        .label-control  {
+          &:after { border-color: $color; }
+        }
+        &.active {
+          .label-text { color: $color !important; }
+        }
+      }
+    }
+  }
+};
+
+@mixin color-button($color){
+  border: 2px solid;
+  background-color: #fff;
+
+  color: $color;
+  background-color: transparent;
+  border-color: $color;
+
+  &:active:focus, &:active:hover, &:active, &:hover {
+    background-color: $color;
+    color: #fff;
+  }
 };

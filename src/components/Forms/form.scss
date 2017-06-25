@@ -1,38 +1,3 @@
-@mixin form-style($bgi, $bgc, $color){
-  &:before {
-    background-image: $bgi;
-    background-color: $bgc;
-  }
-
-  .popup {
-    .header {
-      background: $color;
-    }
-
-    input.btn[type="submit"] {
-      border-color: $color;
-      color: $color;
-
-      &:hover:not([disabled]) {
-        background-color: $color;
-      }
-    }
-
-    .content {
-      .form-group {
-          .label-control  {
-            &:after {
-              border-color: $color;
-            }
-        }
-        &.active {
-            .label-text { color: $color !important; }
-          }
-        }
-      }
-    }
-  }
-
 
 .login, .signup {
 
@@ -55,7 +20,7 @@
 
 }
 
-.login, .book {
+.login, .book, .look {
   @include form-style(url('./images/room.jpg'), rgba(42, 167, 213, 0.5), #2aa7d5);
 }
 
@@ -249,36 +214,6 @@
     width: 100%;
     border-bottom: 1px solid $grey-light;
     @include transition(transform 0.3s);
-  }
-
-
-
-  input.btn[type="submit"] {
-    background-color: #fff;
-    border: 2px solid;
-    border-radius: 2px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 3px;
-    margin: 5px 0;
-    overflow: hidden;
-    padding: 10px;
-    text-transform: uppercase;
-    transition: all 0.15s ease-in-out 0s;
-    width: 100%;
-
-    &:hover:not([disabled]) {
-      color: #fff;
-    }
-
-    &:disabled {
-        border-color: $grey-light;
-        color: $grey-light;
-
-        &:hover { cursor: not-allowed; }
-    }
-
   }
 
 }

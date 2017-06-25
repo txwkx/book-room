@@ -169,7 +169,7 @@ export default class BookForm extends Component {
                    onChange={ this.onEndTChange }
                    />
 
-                <input type='submit' value='Claim Room' disabled={!(title && room && startT && endT)} class='btn' onClick={this.handleReservation}/>
+                 <input type='submit' value='Claim Room' disabled={!(title && room && startT && endT)} class='btn btn-form' onClick={this.handleReservation}/>
 
 
             </form>

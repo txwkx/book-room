@@ -11,7 +11,7 @@ const OneRoom = ({ meeting, room, roomId, callBookForm }) => (
       <div class='info'>
         <p class='title'>{room}</p>
         <button
-          class='btn btn-success btn-block'
+          class='btn btn-green btn-block'
           onClick={callBookForm}>
           BOOK
         </button>
