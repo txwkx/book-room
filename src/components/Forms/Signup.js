@@ -70,7 +70,7 @@ class Signup extends Component {
 
               <input
                 type='submit'
-                value='Signup'
+                value='Sign up'
                 class='btn btn-form'
                 disabled={!(username && password)}
                 onClick={this.handleSignup}

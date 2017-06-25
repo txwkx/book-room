@@ -5147,7 +5147,7 @@ rc@^1.0.1, rc@~1.1.6:
     minimist "^1.2.0"
     strip-json-comments "~1.0.4"
 
-react-day-picker@^6.0.2:
+react-day-picker@^6.0.3:
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-6.0.3.tgz#179a9a9e622b8c25f6a0259c910d58e02e8ef513"
   dependencies:

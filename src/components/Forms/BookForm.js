@@ -126,7 +126,10 @@ export default class BookForm extends Component {
       <div class={`bookform ${isOpened ? 'opened' : ''}`}>
         <div class='modal-backdrop' onClick={this.close}></div>
         <div class='popup'>
-          <div class='header'>Schedule meeting</div>
+          <div class='header'>
+            Schedule meeting
+            <a href='#' class='close' onClick={this.close}></a>
+          </div>
           <div class='content'>
             <form action='#' id='book-form' class={formStatus}>
 
@@ -137,37 +140,38 @@ export default class BookForm extends Component {
                   onChange={ this.onTitleChange }
                   />
 
-                <FormDropdown
-                  name='Room'
-                  value={`${room.name}` || 'Select Room'}
-                  ddList={this.state.rooms}
-                  onChange={ this.onRoomChange }
-                  />
-
-                <DayPicker
-                  selectedDays={selectedDay}
-                  disabledDays={{ before: new Date() }}
-                  fromMonth={new Date()}
-                  onDayClick={ this.onDayChange }
-                  />
-
+                <div class='inputs-group'>
                   <FormDropdown
-                   name='Start Time'
-                   value={`${startT}` || 'HH:MM'}
-                   up={true}
-                   disabled={!Boolean(room.id && selectedDay)}
-                   ddList={this.mapTime2Obj([...INTERVALS.slice(0, -1)])}
-                   onChange={ this.onStartTChange }
-                   />
+                    name='Location'
+                    value={`${room.name}` || 'Room'}
+                    ddList={this.state.rooms}
+                    onChange={ this.onRoomChange }
+                    />
 
-                 <FormDropdown
-                   name='End Time'
-                   value={`${endT}` || 'HH:MM'}
-                   up={true}
-                   disabled={!Boolean(room.id && selectedDay)}
-                   ddList={this.mapTime2Obj(endArr)}
-                   onChange={ this.onEndTChange }
-                   />
+                    <FormDropdown
+                     name='Start Time'
+                     value={`${startT}` || 'HH:MM'}
+                     disabled={!Boolean(room.id && selectedDay)}
+                     ddList={this.mapTime2Obj([...INTERVALS.slice(0, -1)])}
+                     onChange={ this.onStartTChange }
+                     />
+
+                   <FormDropdown
+                     name='End Time'
+                     value={`${endT}` || 'HH:MM'}
+                     disabled={!Boolean(room.id && selectedDay)}
+                     ddList={this.mapTime2Obj(endArr)}
+                     onChange={ this.onEndTChange }
+                     />
+               </div>
+
+                   <DayPicker
+                     selectedDays={selectedDay}
+                     disabledDays={{ before: new Date() }}
+                     firstDayOfWeek={ 1 }
+                     fromMonth={new Date()}
+                     onDayClick={ this.onDayChange }
+                     />
 
                  <input type='submit' value='Claim Room' disabled={!(title && room && startT && endT)} class='btn btn-form' onClick={this.handleReservation}/>
 
