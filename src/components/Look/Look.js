@@ -17,17 +17,22 @@ export default class Look extends Component {
   };
 
   componentDidMount = () => {
+    this.fetchMeetingsList();
     window.addEventListener('scroll', this.handleScroll);
-    const { roomId } = this.props.location;
-    const { userId } = this.context;
-
-    const baseUrl = 'http://localhost:8008/api/meetings';
-    const queryUrl = roomId ? `room/${roomId}` : `user/${userId}`;
-
-    axios.get(`${baseUrl}/${queryUrl}`)
-         .then(res => this.setState({ meetings: res.data }));
-
   }
+
+  shouldComponentUpdate = (nextProps, nextState) => {
+    if((this.props.match.path !== nextProps.match.path)
+      || (JSON.stringify(this.state.meetings) !== JSON.stringify(nextState.meetings))
+      || (this.state.scrolled !== nextState.scrolled)
+      || (this.state.formIsOpened !== nextState.formIsOpened)
+    ) {
+      return true;
+    }
+
+    return false;
+  }
+  componentDidUpdate = () => { this.fetchMeetingsList(); }
 
   componentWillUnmount = () => { window.removeEventListener('scroll', this.handleScroll); }
 
@@ -57,6 +62,18 @@ export default class Look extends Component {
 
   toggleBookForm = (roomId, roomName) => {
     this.setState({formIsOpened: !this.state.formIsOpened});
+  }
+
+
+  fetchMeetingsList = () => {
+    const roomId = this.props.match.params.id;
+    const { userId } = this.context;
+
+    const baseUrl = 'http://localhost:8008/api/meetings';
+    const queryUrl = roomId ? `room/${roomId}` : `user/${userId}`;
+
+    axios.get(`${baseUrl}/${queryUrl}`)
+         .then(res => this.setState({ meetings: res.data }));
   }
 
   render() {
