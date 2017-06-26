@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const OneMeeting = ({roomName, title, host, timeStart, timeEnd, status, toggleMeetingStatus}) => (
-
+const OneMeeting = ({id, roomVal, roomId, title, host, timeStart, timeEnd, status, isHost, toggleMeetingStatus}) => (
   <div class={`meeting ${status ? 'occupied' : 'available'}`}>
-    <p>{roomName}
+    <p>
+      <Link to={`/look/${roomId}`}>{roomVal}</Link>
       <span class='time'>{timeStart} - {timeEnd}</span>
     </p>
     <h4 class='title'>{title}</h4>
@@ -17,11 +18,13 @@ const OneMeeting = ({roomName, title, host, timeStart, timeEnd, status, toggleMe
 );
 
 OneMeeting.propTypes = {
-  roomName: PropTypes.string,
+  roomVal: PropTypes.string,
+  roomId: PropTypes.string,
   title: PropTypes.string,
   host: PropTypes.string,
   time: PropTypes.string,
   status: PropTypes.bool,
+  isHost: PropTypes.bool,
   toggleMeetingStatus: PropTypes.func
 };
 

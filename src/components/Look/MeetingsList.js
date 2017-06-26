@@ -24,29 +24,20 @@ export default class MeetingsList extends Component {
                 </div>
                 <OneMeeting
                       key={`meeting-${i}`}
-                      roomName={el.roomId.name}
+                      id={el._id}
+                      roomId={el.roomId._id}
+                      roomVal={el.roomId.value}
                       title={el.title}
                       host={el.hostId.name}
                       timeStart={moment(el.startTime).format('HH:mm')}
                       timeEnd={moment(el.endTime).format('HH:mm')}
                       status={el.attendees.filter(user => user._id === userId).length > 0}
+                      isHost={el.hostId._id === userId}
                       toggleMeetingStatus={this.props.toggleMeetingStatus}
                       />
             </div>;
             })
           }
-
-
-
-          <OneMeeting
-              roomName={'Room #5'}
-              title={'True meeting'}
-              host={'Name Surname'}
-              timeStart={'19:00'}
-              timeEnd={'23:00'}
-              status={false}
-              toggleMeetingStatus={this.props.toggleMeetingStatus}
-              />
 
         </div>
       </div>

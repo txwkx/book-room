@@ -9,7 +9,7 @@
     }
 
     .timeline-body {
-      padding-top: 120px;
+      padding-top: 104px;
     }
   }
 
@@ -52,6 +52,7 @@
 
   .timeline-body {
     @include block-setting($color: #f3f3f3);
+    padding-top: 20px;
 
     .meeting {
       margin: 25px 0px;
@@ -61,7 +62,13 @@
 
       @include block-setting();
 
-      &.available { border-top: 2px solid $green; }
+      &.available {
+        border-top: 2px solid $green;
+
+        .attend {
+          color: $green;
+        }
+      }
 
       &.occupied { border-top: 2px solid $red; }
 
@@ -77,8 +84,6 @@
       .attend {
         margin-top: 15px;
         @include font-setting(18px, $red);
-
-        &.free { color: $green; }
 
         &:hover { text-decoration: none; cursor: pointer;}
       }

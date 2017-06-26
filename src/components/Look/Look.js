@@ -9,7 +9,6 @@ import BookForm from '../Forms/BookForm';
 export default class Look extends Component {
   state = {
     scrolled: false,
-    meetings: [],
     formIsOpened: false
   }
 
@@ -61,7 +60,7 @@ export default class Look extends Component {
   }
 
   render() {
-    const { roomId } = this.props.location;
+    const roomId = this.props.match.params.id;
 
     return (
     <div class='look'>
@@ -74,8 +73,10 @@ export default class Look extends Component {
           <div class='timeline-header'>
             <div class='container'>
 
-              <h3 class='title'>All meetings</h3>
-              {roomId && <p>{this.props.location.roomId}</p>}
+              {roomId ?
+              <h3 class='title'>Room Schedule</h3> :
+              <h3 class='title'>Personal Schedule</h3>
+              }
 
             </div>
           </div>
