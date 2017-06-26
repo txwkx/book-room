@@ -26,16 +26,16 @@ export default class Book extends Component {
       .then(res => this.setState({ rooms: res.data }));
   }
 
-  toggleActiveRoom = (roomId, roomName) => {
+  toggleBookForm = (roomId, roomName) => {
     let room = {};
     room['id'] = roomId || '';
-    room['name'] = roomName || '';
-    this.setState({activeRoom: room});
-  }
+    room['name'] = roomName || '';  
 
-  toggleBookForm = (roomId, roomName) => {
-    this.setState({formIsOpened: !this.state.formIsOpened});
-    this.toggleActiveRoom(roomId, roomName);
+    this.setState({
+      formIsOpened: !this.state.formIsOpened,
+      activeRoom: room
+    });
+
   }
 
   applyFilter = (filter) => {
@@ -72,7 +72,6 @@ export default class Book extends Component {
           isOpened={this.state.formIsOpened}
           closeBookForm={this.toggleBookForm}
           room={this.state.activeRoom}
-          onChange={this.toggleActiveRoom}
         />
       </div>
     );

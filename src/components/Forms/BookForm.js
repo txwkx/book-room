@@ -32,7 +32,8 @@ export default class BookForm extends Component {
     startT: '',
     endT: '',
     endArr: INTERVALS,
-    formStatus: ''
+    formStatus: '',
+    activeRoom: { id: '', name: '' }
   }
 
   initState = {}
@@ -56,7 +57,10 @@ export default class BookForm extends Component {
   }
 
   onRoomChange = (roomId, roomName) => {
-    this.props.onChange(roomId, roomName);
+    let room = {};
+    room['id'] = roomId || '';
+    room['name'] = roomName || '';
+    this.setState({activeRoom: room});
   }
 
   onDayChange = (day, { disabled }) => {
@@ -89,8 +93,7 @@ export default class BookForm extends Component {
 
   handleReservation = (e) => {
     e.preventDefault();
-    const room = this.props.room.id;
-    const { selectedDay, startT, endT, title } = this.state;
+    const { selectedDay, activeRoom, startT, endT, title } = this.state;
     const { userId } = this.context;
 
     const day = selectedDay.toISOString().split('T')[0];
@@ -99,7 +102,7 @@ export default class BookForm extends Component {
     //toISO ignores timezone
 
     const newMeeting = {
-      room: room,
+      room: activeRoom.id,
       title: title,
       startT: startTime,
       endT: endTime,
@@ -118,9 +121,8 @@ export default class BookForm extends Component {
   }
 
   render() {
-    // console.log('Book form rendered');
-    const { title, selectedDay, rooms, startT, endT, endArr, formStatus } = this.state;
-    const { isOpened, room } = this.props;
+    const { title, selectedDay, activeRoom, rooms, startT, endT, endArr, formStatus } = this.state;
+    const { isOpened } = this.props;
 
     return (
       <div class={`bookform ${isOpened ? 'opened' : ''}`}>
@@ -143,7 +145,7 @@ export default class BookForm extends Component {
                 <div class='inputs-group'>
                   <FormDropdown
                     name='Location'
-                    value={`${room.name}` || 'Room'}
+                    value={`${activeRoom.name}` || 'Room'}
                     ddList={this.state.rooms}
                     onChange={ this.onRoomChange }
                     />
@@ -151,7 +153,7 @@ export default class BookForm extends Component {
                     <FormDropdown
                      name='Start Time'
                      value={`${startT}` || 'HH:MM'}
-                     disabled={!Boolean(room.id && selectedDay)}
+                     disabled={!Boolean(activeRoom.id && selectedDay)}
                      ddList={this.mapTime2Obj([...INTERVALS.slice(0, -1)])}
                      onChange={ this.onStartTChange }
                      />
@@ -159,7 +161,7 @@ export default class BookForm extends Component {
                    <FormDropdown
                      name='End Time'
                      value={`${endT}` || 'HH:MM'}
-                     disabled={!Boolean(room.id && selectedDay)}
+                     disabled={!Boolean(activeRoom.id && selectedDay)}
                      ddList={this.mapTime2Obj(endArr)}
                      onChange={ this.onEndTChange }
                      />
@@ -173,7 +175,7 @@ export default class BookForm extends Component {
                      onDayClick={ this.onDayChange }
                      />
 
-                 <input type='submit' value='Claim Room' disabled={!(title && room && startT && endT)} class='btn btn-form' onClick={this.handleReservation}/>
+                 <input type='submit' value='Claim Room' disabled={!(title && activeRoom && startT && endT)} class='btn btn-form' onClick={this.handleReservation}/>
 
 
             </form>

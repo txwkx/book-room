@@ -10,8 +10,7 @@ export default class Look extends Component {
   state = {
     scrolled: false,
     meetings: [],
-    formIsOpened: false,
-    activeRoom: { id: '', name: '' }
+    formIsOpened: false
   }
 
   static contextTypes = {
@@ -59,7 +58,6 @@ export default class Look extends Component {
 
   toggleBookForm = (roomId, roomName) => {
     this.setState({formIsOpened: !this.state.formIsOpened});
-    this.toggleActiveRoom(roomId, roomName);
   }
 
   render() {
@@ -95,8 +93,6 @@ export default class Look extends Component {
         <BookForm
           isOpened={this.state.formIsOpened}
           closeBookForm={this.toggleBookForm}
-          room={this.state.activeRoom}
-          onChange={this.toggleActiveRoom}
         />
       </div>
     );
