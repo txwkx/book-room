@@ -20,8 +20,8 @@ const Header = ({ openBookForm }) => (
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="active"><NavLink activeClassName="active" to="/book">Book</NavLink></li>
           <li><NavLink activeClassName="active" to="/look">Look</NavLink></li>
+          <li><NavLink activeClassName="active" to="/book">Book</NavLink></li>
         </ul>
       </div>
     </div>
