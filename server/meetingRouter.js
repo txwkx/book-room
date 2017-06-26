@@ -64,5 +64,29 @@ meetingRouter.post('/', (req, res) => {
 
 });
 
+meetingRouter.post('/status', (req, res) => {
+  let query = {
+    meetingId: ObjectId(req.body.meetingId),
+    userId: req.body.userId
+  }
+
+  Meeting.findById(query.meetingId, (err, meet) => {
+    if(err) res.status(500).send(err);
+    if(!meet) res.status(404).send('Meeting not found.');
+
+    let att = meet.attendees;
+
+    //TODO: why am I using toString() ? :(
+    att.find(el => el.toString() === query.userId) ?
+      att.splice(att.indexOf(query.userId), 1) :
+      att.push(ObjectId(query.userId));
+
+    meet.save(err => {
+        if(err) res.status(500).send(err);
+        else res.status(201).send(meet);
+      });
+
+  });
+});
 
 module.exports = meetingRouter;

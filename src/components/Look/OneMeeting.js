@@ -11,10 +11,7 @@ const OneMeeting = ({roomName, title, host, timeStart, timeEnd, status, toggleMe
     <p class='author'>
       <span>Host: </span>{host}
       </p>
-    { status ?
-      <a class='attend' onClick={toggleMeetingStatus}>Cancel</a> :
-      <a class='attend free' onClick={toggleMeetingStatus}>Attend</a>
-    }
+    {!isHost && (<a class='attend' onClick={() => toggleMeetingStatus(id)}>{status ? 'Cancel' : 'Attend'}</a>)}
   </div>
 
 );

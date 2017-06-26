@@ -42,8 +42,19 @@ export default class Look extends Component {
 
   }
 
-  toggleMeetingStatus = (e) => {
-    e.preventDefault();
+  toggleMeetingStatus = (meetingId) => {
+    const meetingsData = {
+      meetingId: meetingId,
+      userId: this.context.userId,
+    };
+
+    axios.post('http://localhost:8008/api/meetings/status', meetingsData)
+      .then(res => {
+        this.fetchMeetingsList();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   toggleBookForm = (roomId, roomName) => {
@@ -71,10 +82,12 @@ export default class Look extends Component {
             </div>
           </div>
 
-          <MeetingsList
-            meetings={this.state.meetings}
-            toggleMeetingStatus={this.toggleMeetingStatus}
-            />
+          {this.state.meetings &&
+            <MeetingsList
+              meetings={this.state.meetings}
+              toggleMeetingStatus={this.toggleMeetingStatus}
+              />
+          }
 
           </div>
         </div>
