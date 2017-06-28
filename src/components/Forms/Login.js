@@ -4,9 +4,12 @@ import { withRouter } from 'react-router';
 import axios from 'axios';
 
 import FormInput from './FormInput';
+import Success from './Success';
 
 class Login extends Component {
-  state = {}
+  state = {
+    success: false
+  }
 
   handleLogin = (e) => {
     e.preventDefault();
@@ -24,7 +27,11 @@ class Login extends Component {
         if(!status) {
           this.setState({error : res.data.message});
         } else {
-          this.props.history.push('/');
+          console.log('userID: ', res.data.userId);
+          this.setState({success: true});
+          setTimeout(() => {
+              this.props.history.push('/');
+          }, 1500);
         }
       })
       .catch(err => {
@@ -45,12 +52,14 @@ class Login extends Component {
   }
 
   render() {
-    const { error, username, password } = this.state;
+    const { error, success, username, password } = this.state;
     return(
       <div class='login'>
         <div class='popup'>
           <div class='header'>Welcome Back</div>
           <div class='content'>
+            { success ?
+            <Success /> :
             <form action="http://localhost:8008/login" method="post" id='login-form'>
 
               <FormInput
@@ -78,6 +87,7 @@ class Login extends Component {
 
               <p>Need an account? <Link to="/signup">Sign up</Link></p>
             </form>
+            }
           </div>
         </div>
       </div>

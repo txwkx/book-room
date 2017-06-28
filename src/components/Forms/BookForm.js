@@ -8,6 +8,7 @@ import styles from 'react-day-picker/lib/style.css';
 
 import FormInput from './FormInput';
 import FormDropdown from './FormDropdown';
+import Success from './Success';
 
 let INTERVALS = [
   '08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00',
@@ -33,6 +34,7 @@ export default class BookForm extends Component {
     endT: '',
     endArr: INTERVALS,
     formStatus: '',
+    success: false,
     activeRoom: { id: '', name: '' }
   }
 
@@ -112,8 +114,8 @@ export default class BookForm extends Component {
 
     axios.post('http://localhost:8008/api/meetings', newMeeting)
       .then(res => {
-        this.setState({ formStatus: 'success' });
-        setTimeout(this.close, 1200);
+        this.setState({ success: true });
+        setTimeout(this.close, 1500);
       })
       .catch(err => {
         this.setState({ formStatus: 'error' });
@@ -121,7 +123,7 @@ export default class BookForm extends Component {
   }
 
   render() {
-    const { title, selectedDay, activeRoom, rooms, startT, endT, endArr, formStatus } = this.state;
+    const { title, selectedDay, activeRoom, rooms, startT, endT, endArr, formStatus, success } = this.state;
     const { isOpened } = this.props;
 
     return (
@@ -133,6 +135,8 @@ export default class BookForm extends Component {
             <a href='#' class='close' onClick={this.close}></a>
           </div>
           <div class='content'>
+            { success ?
+            <Success /> :
             <form action='#' id='book-form' class={formStatus}>
 
                 <FormInput
@@ -177,8 +181,8 @@ export default class BookForm extends Component {
 
                  <input type='submit' value='Claim Room' disabled={!(title && activeRoom && startT && endT)} class='btn btn-form' onClick={this.handleReservation}/>
 
-
             </form>
+          }
           </div>
         </div>
       </div>
