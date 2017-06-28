@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const bourbon = require('node-bourbon').includePaths
 
 module.exports = {
   context: path.resolve(__dirname, ''),
@@ -27,11 +28,16 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'resolve-url-loader',
-          'sass-loader',
+        use: [{
+          loader: 'style-loader'
+        }, {
+          loader: 'css-loader',
+        }, {
+          loader: 'resolve-url-loader',
+        }, {
+          loader: 'sass-loader',
+          includePaths: [paths.client('styles'), bourbon]
+        }
         ],
       },
       {
