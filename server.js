@@ -1,6 +1,7 @@
 const express          = require('express'),
       mongoose         = require('mongoose'),
       bodyParser       = require('body-parser'),
+      cookieParser     = require('cookie-parser'),
       morgan           = require('morgan'),
       expressValidator = require('express-validator'),
       passport         = require('passport'),
@@ -18,6 +19,7 @@ mongoose.connect(config.dbURL, (err) => {
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(expressValidator());
 
 app.use(session({ secret: 'wannalookorbook', resave: true, saveUninitialized: true }))
