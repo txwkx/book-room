@@ -65,5 +65,11 @@ module.exports = {
     historyApiFallback: true,
     stats: 'errors-only',
     overlay: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8008/',
+        secure: false
+      }
+    }
   }
 };

@@ -21,8 +21,7 @@ class Login extends Component {
       password: password
     };
 
-    axios.post('http://localhost:8008/login', userData)
-      .then(res => {
+    axios.post('/api/login', userData).then(res => {
         const status = res.data.success;
         if(!status) {
           this.setState({error : res.data.message});
@@ -60,7 +59,7 @@ class Login extends Component {
           <div class='content'>
             { success ?
             <Success /> :
-            <form action="http://localhost:8008/login" method="post" id='login-form'>
+            <form action="/api/login" method="post" id='login-form'>
 
               <FormInput
                 type='text'

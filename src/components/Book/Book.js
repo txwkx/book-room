@@ -22,7 +22,7 @@ export default class Book extends Component {
    }
 
   componentWillMount() {
-    axios.get('http://localhost:8008/api/rooms')
+    axios.get('/api/rooms')
       .then(res => this.setState({ rooms: res.data }));
   }
 

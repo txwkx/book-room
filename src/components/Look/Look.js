@@ -51,7 +51,7 @@ export default class Look extends Component {
       userId: this.context.userId,
     };
 
-    axios.post('http://localhost:8008/api/meetings/status', meetingsData)
+    axios.post('/api/meetings/status', meetingsData)
       .then(res => {
         this.fetchMeetingsList();
       })
@@ -69,7 +69,7 @@ export default class Look extends Component {
     const roomId = this.props.match.params.id;
     const { userId } = this.context;
 
-    const baseUrl = 'http://localhost:8008/api/meetings';
+    const baseUrl = '/api/meetings';
     const queryUrl = roomId ? `room/${roomId}` : `user/${userId}`;
 
     axios.get(`${baseUrl}/${queryUrl}`)

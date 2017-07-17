@@ -42,7 +42,7 @@ export default class BookForm extends Component {
   /* LIFECYCLE METHODS */
 
   componentWillMount = () => {
-    axios.get('http://localhost:8008/api/rooms')
+    axios.get('/api/rooms')
       .then(res => this.setState({ rooms: res.data }, () => {
         this.initState = this.state;
       }));
@@ -112,7 +112,7 @@ export default class BookForm extends Component {
       attendees: [userId]
     };
 
-    axios.post('http://localhost:8008/api/meetings', newMeeting)
+    axios.post('/api/meetings', newMeeting)
       .then(res => {
         this.setState({ success: true });
         setTimeout(this.close, 1500);

@@ -21,7 +21,7 @@ class Signup extends Component {
       password: password
     };
 
-    axios.post('http://localhost:8008/signup', userData)
+    axios.post('/api/signup', userData)
       .then(res => {
         const status = res.data.success;
         if(!status) {
@@ -60,7 +60,7 @@ class Signup extends Component {
           <div class='content'>
             { success ?
             <Success /> :
-            <form action="http://localhost:8008/signup" method="post" id='signup-form'>
+            <form action="/api/signup" method="post" id='signup-form'>
 
               <FormInput
                 type='text'
