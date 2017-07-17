@@ -5,9 +5,6 @@ import moment from 'moment';
 import OneMeeting from './OneMeeting';
 
 export default class MeetingsList extends Component {
-  static contextTypes = {
-    userId: PropTypes.string.isRequired
-  };
 
   render(){
     const { userId } = this.context;

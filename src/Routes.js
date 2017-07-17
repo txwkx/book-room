@@ -15,7 +15,6 @@ class Routes extends Component {
      userId: PropTypes.string.isRequired
   }
 
-  getChildContext = () => ({ userId: '59084dad7f34d201033dec32'})
 
   render() {
     return (

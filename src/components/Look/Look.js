@@ -12,10 +12,6 @@ export default class Look extends Component {
     formIsOpened: false
   }
 
-  static contextTypes = {
-    userId: PropTypes.string.isRequired
-  };
-
   componentDidMount = () => {
     this.fetchMeetingsList();
     window.addEventListener('scroll', this.handleScroll);

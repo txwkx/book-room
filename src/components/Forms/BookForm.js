@@ -22,10 +22,6 @@ export default class BookForm extends Component {
     closeBookForm: PropTypes.func.isRequired
   }
 
-   static contextTypes = {
-     userId: PropTypes.string.isRequired
-   };
-
   state = {
     title: '',
     rooms: [],
