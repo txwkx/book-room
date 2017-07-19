@@ -19,10 +19,12 @@ class Routes extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" component={Pick} />
+        <Route exact path="/" component={Login} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/mode" component={Pick} />
         <Route path="/book" component={Book} />
+        <Route path="/look/:id" component={Look} />
         <Route path="/look" component={Look} />
         <Route component={FoF} />
       </Switch>

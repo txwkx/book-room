@@ -10,7 +10,7 @@ const Header = ({ openBookForm }) => (
         <button class='btn btn-danger' onClick={e => openBookForm()}>BOOK</button>
       </div>
       <div class="navbar-header">
-        <Link class="navbar-brand" to="/">LOGO</Link>
+        <Link class="navbar-brand" to="/mode">LOGO</Link>
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>

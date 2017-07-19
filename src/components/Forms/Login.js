@@ -29,7 +29,7 @@ class Login extends Component {
           console.log('userID: ', res.data.userId);
           this.setState({success: true});
           setTimeout(() => {
-              this.props.history.push('/');
+              this.props.history.push('/mode');
           }, 1500);
         }
       })

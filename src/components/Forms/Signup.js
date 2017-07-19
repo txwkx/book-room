@@ -29,7 +29,7 @@ class Signup extends Component {
         } else {
           this.setState({success: true});
           setTimeout(() => {
-              this.props.history.push('/');
+              this.props.history.push('/mode');
           }, 1500);
         }
       })
