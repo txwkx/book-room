@@ -92,7 +92,6 @@ export default class BookForm extends Component {
   handleReservation = (e) => {
     e.preventDefault();
     const { selectedDay, activeRoom, startT, endT, title } = this.state;
-    const { userId } = this.context;
 
     const day = selectedDay.toISOString().split('T')[0];
     const startTime = new Date(`${day}T${startT}`).toISOString();
@@ -103,9 +102,7 @@ export default class BookForm extends Component {
       room: activeRoom.id,
       title: title,
       startT: startTime,
-      endT: endTime,
-      host: userId,
-      attendees: [userId]
+      endT: endTime
     };
 
     axios.post('/api/meetings', newMeeting)

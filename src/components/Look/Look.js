@@ -43,8 +43,7 @@ export default class Look extends Component {
 
   toggleMeetingStatus = (meetingId) => {
     const meetingsData = {
-      meetingId: meetingId,
-      userId: this.context.userId,
+      meetingId: meetingId
     };
 
     axios.post('/api/meetings/status', meetingsData)
@@ -62,13 +61,10 @@ export default class Look extends Component {
 
 
   fetchMeetingsList = () => {
+
     const roomId = this.props.match.params.id;
-    const { userId } = this.context;
 
-    const baseUrl = '/api/meetings';
-    const queryUrl = roomId ? `room/${roomId}` : `user/${userId}`;
-
-    axios.get(`${baseUrl}/${queryUrl}`)
+    axios.get(`/api/meetings?roomId=${roomId}`)
          .then(res => this.setState({ meetings: res.data }));
   }
 

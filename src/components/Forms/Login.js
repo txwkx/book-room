@@ -26,7 +26,6 @@ class Login extends Component {
         if(!status) {
           this.setState({error : res.data.message});
         } else {
-          console.log('userID: ', res.data.userId);
           this.setState({success: true});
           setTimeout(() => {
               this.props.history.push('/mode');

@@ -11,11 +11,6 @@ import FoF from './components/404';
 
 class Routes extends Component {
 
-  static childContextTypes = {
-     userId: PropTypes.string.isRequired
-  }
-
-
   render() {
     return (
       <Switch>

@@ -7,7 +7,6 @@ import OneMeeting from './OneMeeting';
 export default class MeetingsList extends Component {
 
   render(){
-    const { userId } = this.context;
 
     return(
       <div class='timeline-body'>
@@ -28,8 +27,6 @@ export default class MeetingsList extends Component {
                       host={el.hostId.name}
                       timeStart={moment(el.startTime).format('HH:mm')}
                       timeEnd={moment(el.endTime).format('HH:mm')}
-                      status={el.attendees.filter(user => user._id === userId).length > 0}
-                      isHost={el.hostId._id === userId}
                       toggleMeetingStatus={this.props.toggleMeetingStatus}
                       />
             </div>;
