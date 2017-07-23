@@ -5,9 +5,11 @@ const mongoose = require('mongoose'),
 
 const booking = require('./models/bookingModel');
 
+const isAuthed = require('./passport/isUserAuthed');
+
 const bookingRouter = express.Router();
 
-bookingRouter.get('/:id/:date', (req, res) => {
+bookingRouter.get('/:id/:date', isAuthed, (req, res) => {
     let query = {
       roomId: req.params.id,
       date: {$gte: req.params.date, $lt: moment(req.params.date).add(1, 'day').toISOString() }

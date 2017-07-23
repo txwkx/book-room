@@ -4,9 +4,11 @@ const mongoose = require('mongoose'),
 
 const room     = require('./models/roomModel');
 
+const isAuthed = require('./passport/isUserAuthed');
+
 const roomRouter = express.Router();
 
-roomRouter.get('/', (req, res) => {
+roomRouter.get('/', isAuthed, (req, res) => {
     let query = {};
 
     room.find(query, (err, rooms) => {
@@ -15,7 +17,7 @@ roomRouter.get('/', (req, res) => {
     });
 });
 
-roomRouter.get('/:id', (req, res) => {
+roomRouter.get('/:id', isAuthed, (req, res) => {
     const roomId = ObjectId(req.params.id);
     room.findById(roomId, (err, room) => {
       if(err) res.status(500).send(err);

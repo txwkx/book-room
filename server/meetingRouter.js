@@ -7,6 +7,8 @@ const user     = require('./models/userModel');
 const room     = require('./models/roomModel');
 const Meeting  = require('./models/meetingModel');
 
+const isAuthed = require('./passport/isUserAuthed');
+
 const meetingRouter = express.Router();
 
 meetingRouter.get('/room/:id', (req, res) => {
@@ -38,7 +40,7 @@ meetingRouter.get('/user/:id', (req, res) => {
     });
 });
 
-meetingRouter.post('/', (req, res) => {
+meetingRouter.post('/', isAuthed, (req, res) => {
 
   req.checkBody("title", "Invalid title").matches("^[0-9a-zA-Z ]+$");
 
