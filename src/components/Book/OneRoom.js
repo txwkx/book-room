@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const OneRoom = ({ meeting, room, roomId, callBookForm }) => (
+const OneRoom = ({ meeting, photo, name, roomId, callBookForm }) => (
   <div class='col-md-3 col-sm-4 text-center'>
     <div class='room'>
-      <Link class='header' to={{pathname: `/look/${roomId}`, roomId: roomId }}>
+      <Link class='header' style={{backgroundImage: `url('${photo}')`}} to={`/look/${roomId}`}>
         <span>{meeting}</span>
       </Link>
       <div class='info'>
-        <p class='title'>{room}</p>
+        <p class='title'>{name}</p>
         <button
           class='btn btn-green btn-block'
           onClick={callBookForm}>
@@ -22,7 +22,7 @@ const OneRoom = ({ meeting, room, roomId, callBookForm }) => (
 
 OneRoom.propTypes = {
   meeting: PropTypes.string,
-  room: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   roomId: PropTypes.string.isRequired,
   callBookForm: PropTypes.func
 };

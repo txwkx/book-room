@@ -53,7 +53,21 @@
         height: 150px;
         display: block;
         position: relative;
-        background: linear-gradient(to right, rgba(127,142,138,0.6) 0%, rgba(100,165,210,1) 100%);
+        background: {
+          repeat: no-repeat;
+          size: cover;
+          position: center;
+          blend-mode: luminosity;
+        }
+
+        &:before {
+          content: '';
+          left: 0;
+          right: 0;
+          position: absolute;
+          height: inherit;
+          background: linear-gradient(to right, rgba(127,142,138,0.3) 0%, rgba(100,165,210,0.7) 100%);
+        }
 
         span {
           font: {
@@ -61,7 +75,10 @@
             size: 2rem;
             weight: 900;
           }
-          text-transform: uppercase;
+          text: {
+            transform: uppercase;
+            shadow: 1px 1px #000;
+          }
           margin: 0;
           position: absolute;
           top: 50%;

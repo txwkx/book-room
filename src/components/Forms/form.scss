@@ -21,11 +21,11 @@ $output-bourbon-deprecation-warnings: false !default;
 }
 
 .login, .book, .look {
-  @include form-style(url('./images/room.jpg'), rgba(42, 167, 213, 0.5), #2aa7d5);
+  @include form-style(url('./images/login.jpg'), rgba(42, 167, 213, 0.5), #2aa7d5);
 }
 
 .signup {
-  @include form-style(url('./images/room5.jpg'), rgba(82, 209, 164, 0.5), #52d1a4);
+  @include form-style(url('./images/signup.jpg'), rgba(82, 209, 164, 0.5), #52d1a4);
 }
 
 .bookform {
@@ -166,7 +166,7 @@ $output-bourbon-deprecation-warnings: false !default;
         .dropdown-menu {
           max-height: 160px;
           overflow-y: auto;
-          min-width: none;
+          min-width: auto !important;
         }
 
         .dropdown-menu li {

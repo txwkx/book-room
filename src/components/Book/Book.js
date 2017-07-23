@@ -29,7 +29,7 @@ export default class Book extends Component {
   toggleBookForm = (roomId, roomName) => {
     let room = {};
     room['id'] = roomId || '';
-    room['name'] = roomName || '';  
+    room['name'] = roomName || '';
 
     this.setState({
       formIsOpened: !this.state.formIsOpened,
@@ -57,10 +57,11 @@ export default class Book extends Component {
 
             { this.state.rooms.map((el, i) => {
               return <OneRoom
+                      photo={'' || el.photo}
                       key={`room-${i}`}
-                      room={el.value}
+                      name={el.value}
                       roomId={el._id}
-                      meeting={el.title}
+                      meeting={'Test meeting'}
                       callBookForm={() => this.toggleBookForm(el._id, el.value)}
                     />;
             })}
