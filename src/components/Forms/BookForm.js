@@ -143,6 +143,7 @@ export default class BookForm extends Component {
                 <FormInput
                   name='Title'
                   value={title}
+                  required={true}
                   ref={comp => {this.FormInput = comp;}}
                   onChange={ this.onTitleChange }
                   />

@@ -64,13 +64,17 @@
 
       &.available {
         border-top: 2px solid $green;
+        transition: border-top 0.5s ease-out;
 
         .attend {
           color: $green;
         }
       }
 
-      &.occupied { border-top: 2px solid $red; }
+      &.occupied {
+        border-top: 2px solid $red;
+        transition: border-top 0.5s ease-out;
+      }
 
       p { @include font-setting(16px, $grey-dark); }
 

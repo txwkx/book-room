@@ -31,13 +31,17 @@ export default class FormInput extends Component {
     }
 
     render() {
-      const { name, type, value } = this.props;
+      const { name, required, type, value } = this.props;
       const { isActive } = this.state;
 
       return (
           <div class={`form-group textinput ${isActive ? 'active': ''}`}>
               <label class='label-control'>
+                {required ?
+                  <span class='label-text'>{name}<i>*</i></span>
+                  :
                   <span class='label-text'>{name}</span>
+                }
               </label>
               <input type={type}
                      name={name}

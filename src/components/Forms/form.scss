@@ -119,6 +119,11 @@
           @include transform(translate3d(0, 30px, 0) scale(1));
           @include transform-origin(top left);
           @include transition(0.3s);
+
+          i {
+            color: red;
+            padding-left: 5px;
+          }
         }
 
         &:before, &:after{
