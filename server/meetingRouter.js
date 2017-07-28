@@ -58,7 +58,6 @@ meetingRouter.post('/', isAuthed, (req, res) => {
         meeting.startTime =  new Date(req.body.startT);
         meeting.endTime = new Date(req.body.endT);
         meeting.attendees = [req.user._id];
-    // console.log(meeting);
 
     meeting.save(err => {
       if(err) res.status(500).send(err);
