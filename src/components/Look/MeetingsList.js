@@ -21,8 +21,8 @@ export default class MeetingsList extends Component {
                 <OneMeeting
                       key={`meeting-${i}`}
                       id={el._id}
-                      roomId={el.roomId._id}
-                      roomVal={el.roomId.value}
+                      roomId={el.room._id}
+                      roomName={el.room.value}
                       title={el.title}
                       host={el.hostId.name}
                       timeStart={moment(el.startTime).format('HH:mm')}

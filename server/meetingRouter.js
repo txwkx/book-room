@@ -2,7 +2,7 @@ const util     = require('util');
 const express  = require('express');
 const mongoose = require('mongoose'),
       ObjectId = mongoose.Types.ObjectId;
-      
+
 const user     = require('./models/userModel');
 const room     = require('./models/roomModel');
 const Meeting  = require('./models/meetingModel');
@@ -11,32 +11,34 @@ const isAuthed = require('./passport/isUserAuthed');
 
 const meetingRouter = express.Router();
 
-meetingRouter.get('/room/:id', (req, res) => {
-    let query = {
-      roomId: ObjectId(req.params.id)
-    };
+meetingRouter.get('/', isAuthed, (req, res) => {
+
+    const isRoomMode = req.query.roomId !== 'undefined';
+    let query;
+    if(isRoomMode){
+      query = { room: ObjectId(req.query.roomId) };
+    } else {
+      query = { attendees: ObjectId(req.user._id) };
+    }
 
     Meeting.find(query)
-    .populate('roomId hostId attendees').sort('startTime')
+    .populate('room')
+    .populate('hostId attendees', 'username')
+    .sort('startTime')
+    .lean()
     .exec((err, meetings) => {
       if(err) res.status(500).send(err);
       if(!meetings) res.status(404).send('Meeting not found.');
-      else res.json(meetings);
-    });
-});
+      else {
 
+        meetings.map(el => {
+          el.isHost = req.user._id.toString() === el.hostId._id.toString();
+          el.status = el.attendees.filter(user => user._id.toString() === req.user._id.toString()).length > 0;
+          return el;
+        });
 
-meetingRouter.get('/user/:id', (req, res) => {
-    let query = {
-      attendees: ObjectId(req.params.id)
-    };
-
-    Meeting.find(query)
-    .populate('roomId hostId attendees').sort('startTime')
-    .exec((err, meetings) => {
-      if(err) res.status(500).send(err);
-      if(!meetings) res.status(404).send('Meeting not found.');
-      else res.json(meetings);
+        res.json(meetings);
+      }
     });
 });
 

@@ -19,7 +19,7 @@ export default class Look extends Component {
 
   shouldComponentUpdate = (nextProps, nextState) => {
     if((this.props.match.path !== nextProps.match.path)
-      || (JSON.stringify(this.state.meetings) !== JSON.stringify(nextState.meetings))
+      || (JSON.stringify(this.state.timeline) !== JSON.stringify(nextState.timeline))
       || (this.state.scrolled !== nextState.scrolled)
       || (this.state.formIsOpened !== nextState.formIsOpened)
     ) {
@@ -28,6 +28,7 @@ export default class Look extends Component {
 
     return false;
   }
+
   componentDidUpdate = () => { this.fetchMeetingsList(); }
 
   componentWillUnmount = () => { window.removeEventListener('scroll', this.handleScroll); }
@@ -65,7 +66,7 @@ export default class Look extends Component {
     const roomId = this.props.match.params.id;
 
     axios.get(`/api/meetings?roomId=${roomId}`)
-         .then(res => this.setState({ meetings: res.data }));
+         .then(res => this.setState({ timeline: res.data }));
   }
 
   render() {
@@ -90,9 +91,9 @@ export default class Look extends Component {
             </div>
           </div>
 
-          {this.state.meetings &&
+          {timeline &&
             <MeetingsList
-              meetings={this.state.meetings}
+              meetings={timeline}
               toggleMeetingStatus={this.toggleMeetingStatus}
               />
           }
