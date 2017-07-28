@@ -52,12 +52,12 @@ meetingRouter.post('/', isAuthed, (req, res) => {
       return;
     }
     let meeting = new Meeting();
-        meeting.roomId = req.body.room;
+        meeting.room = req.body.room;
         meeting.title = req.body.title;
-        meeting.hostId = req.body.host;
+        meeting.hostId = req.user._id;
         meeting.startTime =  new Date(req.body.startT);
         meeting.endTime = new Date(req.body.endT);
-        meeting.attendees = req.body.attendees;
+        meeting.attendees = [req.user._id];
     // console.log(meeting);
 
     meeting.save(err => {
@@ -70,8 +70,7 @@ meetingRouter.post('/', isAuthed, (req, res) => {
 
 meetingRouter.post('/status', (req, res) => {
   let query = {
-    meetingId: ObjectId(req.body.meetingId),
-    userId: req.body.userId
+    meetingId: ObjectId(req.body.meetingId)
   }
 
   Meeting.findById(query.meetingId, (err, meet) => {
@@ -80,10 +79,9 @@ meetingRouter.post('/status', (req, res) => {
 
     let att = meet.attendees;
 
-    //TODO: why am I using toString() ? :(
-    att.find(el => el.toString() === query.userId) ?
-      att.splice(att.indexOf(query.userId), 1) :
-      att.push(ObjectId(query.userId));
+    att.find(el => el.toString() === req.user._id.toString()) ?
+      att.splice(att.indexOf(req.user._id), 1) :
+      att.push(ObjectId(req.user._id));
 
     meet.save(err => {
         if(err) res.status(500).send(err);

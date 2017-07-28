@@ -24,9 +24,11 @@ export default class MeetingsList extends Component {
                       roomId={el.room._id}
                       roomName={el.room.value}
                       title={el.title}
-                      host={el.hostId.name}
+                      host={el.hostId.username}
                       timeStart={moment(el.startTime).format('HH:mm')}
                       timeEnd={moment(el.endTime).format('HH:mm')}
+                      status={el.status}
+                      isHost={el.isHost}
                       toggleMeetingStatus={this.props.toggleMeetingStatus}
                       />
             </div>;
