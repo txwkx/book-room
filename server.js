@@ -5,7 +5,9 @@ const express          = require('express'),
       morgan           = require('morgan'),
       expressValidator = require('express-validator'),
       passport         = require('passport'),
-      session          = require('express-session');
+      session          = require('express-session'),
+      MongoStore       = require('connect-mongo')(session);
+
 const config           = require('./server/config');
 
 const port = process.env.PORT || 8008;
@@ -22,7 +24,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(expressValidator());
 
-app.use(session({ secret: 'wannalookorbook', resave: true, saveUninitialized: true }))
+app.use(session({
+  secret: config.secret,
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 

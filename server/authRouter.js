@@ -1,6 +1,6 @@
 module.exports = function(app, passport) {
 
-  app.post('/login', (req, res, next) => {
+  app.post('/api/login', (req, res, next) => {
     passport.authenticate('local-login', (err, user, info) => {
 
       if (err) return next(err);
@@ -11,13 +11,13 @@ module.exports = function(app, passport) {
         if (loginErr) {
           return next(loginErr);
         }
-        return res.send({ success: true, message: 'authentication succeeded' });
+        return res.send({ success: true });
       });
     })(req, res, next);
   });
 
 
-  app.post('/signup', (req, res, next) => {
+  app.post('/api/signup', (req, res, next) => {
     passport.authenticate('local-signup', (err, user, info) => {
 
       if (err) return next(err);
@@ -28,7 +28,7 @@ module.exports = function(app, passport) {
         if (loginErr) {
           return next(loginErr);
         }
-        return res.send({ success: true, message: 'authentication succeeded' });
+        return res.send({ success: true });
       });
     })(req, res, next);
   });

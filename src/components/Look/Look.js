@@ -71,10 +71,11 @@ export default class Look extends Component {
 
   render() {
     const roomId = this.props.match.params.id;
+    const { formIsOpened, scrolled, timeline } = this.state;
 
     return (
     <div class='look'>
-      <div class={`wrap ${this.state.scrolled ? 'scrolled' : ''}`}>
+      <div class={`wrap ${scrolled ? 'scrolled' : ''}`}>
         <Header openBookForm={this.toggleBookForm} />
 
         <div class='room-photo'></div>
@@ -102,7 +103,7 @@ export default class Look extends Component {
         </div>
 
         <BookForm
-          isOpened={this.state.formIsOpened}
+          isOpened={formIsOpened}
           closeBookForm={this.toggleBookForm}
         />
       </div>
