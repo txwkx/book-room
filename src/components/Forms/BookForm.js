@@ -46,6 +46,14 @@ export default class BookForm extends Component {
 
   componentDidUpdate = (prevProps, prevState) => {
     if(!prevProps.isOpened) this.FormInput.focus();
+    if(this.props.room !== undefined){
+      this.setState({ activeRoom: this.props.room });
+    }
+  }
+
+  shouldComponentUpdate = (nextProps, nextState) => {
+    if((this.state.activeRoom === nextProps.room)) return false;
+    return true;
   }
 
   /* INPUT CHANGES */
