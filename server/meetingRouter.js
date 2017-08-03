@@ -16,9 +16,15 @@ meetingRouter.get('/', isAuthed, (req, res) => {
     const isRoomMode = req.query.roomId !== 'undefined';
     let query;
     if(isRoomMode){
-      query = { room: ObjectId(req.query.roomId) };
+      query = {
+        room: ObjectId(req.query.roomId),
+        startTime: { $gte: new Date() }
+       };
     } else {
-      query = { attendees: ObjectId(req.user._id) };
+      query = {
+        attendees: ObjectId(req.user._id),
+        startTime: { $gte: new Date() }
+      };
     }
 
     Meeting.find(query)
