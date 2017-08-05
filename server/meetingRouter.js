@@ -60,7 +60,7 @@ meetingRouter.get('/roominfo', isAuthed, (req, res) => {
 
 meetingRouter.post('/', isAuthed, (req, res) => {
 
-  req.checkBody("title", "Invalid title").matches("^[0-9a-zA-Z ]+$");
+  req.checkBody('title', 'Invalid title').matches('^[0-9a-zA-Z ]+$');
 
   req.getValidationResult().then((errors) => {
     if(!errors.isEmpty()){

@@ -19,4 +19,6 @@ const meetingSchema = new Schema({
   }]
 });
 
+meetingSchema.index({room: 1, startTime: 1, attendees: 1});
+
 module.exports = mongoose.model('Meeting', meetingSchema);
