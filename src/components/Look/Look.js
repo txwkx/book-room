@@ -9,13 +9,17 @@ import BookForm from '../Forms/BookForm';
 export default class Look extends Component {
   state = {
     scrolled: false,
-    formIsOpened: false
+    formIsOpened: false,
   }
 
-  componentDidMount = () => {
+  componentWillMount = () => {
+    this.fetchRoomInfo();
     this.fetchMeetingsList();
-    window.addEventListener('scroll', this.handleScroll);
   }
+
+  componentDidMount = () => { window.addEventListener('scroll', this.handleScroll); }
+
+  componentWillUnmount = () => { window.removeEventListener('scroll', this.handleScroll); }
 
   shouldComponentUpdate = (nextProps, nextState) => {
     if((this.props.match.path !== nextProps.match.path)
@@ -29,9 +33,10 @@ export default class Look extends Component {
     return false;
   }
 
-  componentDidUpdate = () => { this.fetchMeetingsList(); }
-
-  componentWillUnmount = () => { window.removeEventListener('scroll', this.handleScroll); }
+  componentDidUpdate = () => {
+    this.fetchRoomInfo();
+    this.fetchMeetingsList();
+  }
 
   handleScroll = (event) => {
     let top = event.srcElement.body.scrollTop;
@@ -67,25 +72,42 @@ export default class Look extends Component {
 
     axios.get(`/api/meetings?roomId=${roomId}`)
          .then(res => this.setState({ timeline: res.data }));
+
+  }
+
+  fetchRoomInfo = () => {
+
+    const roomId = this.props.match.params.id;
+
+    if(roomId !== undefined){
+      axios.get(`/api/meetings/roominfo?roomId=${roomId}`)
+           .then(res => this.setState({ roomInfo: res.data[0] }));
+    } else {
+      this.setState({ roomInfo: { photo: '', name: '' } });
+    }
+
   }
 
   render() {
     const roomId = this.props.match.params.id;
-    const { formIsOpened, scrolled, timeline } = this.state;
+    const { formIsOpened, roomInfo, scrolled, timeline } = this.state;
 
     return (
     <div class='look'>
       <div class={`wrap ${scrolled ? 'scrolled' : ''}`}>
         <Header openBookForm={this.toggleBookForm} />
 
-        <div class='room-photo'></div>
+        {roomId ?
+        <div class='room-photo' style={{backgroundImage: `url('${roomInfo.photo}')`}}></div> :
+        <div class='room-photo personal'></div>
+        }
 
         <div class='timeline'>
           <div class='timeline-header'>
             <div class='container'>
 
               {roomId ?
-              <h3 class='title'>Room Schedule</h3> :
+              <h3 class='title'>Room Schedule | {roomInfo.value}</h3> :
               <h3 class='title'>Personal Schedule</h3>
               }
 

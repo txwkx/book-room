@@ -24,13 +24,24 @@
   min-height: 200px;
 
   background: {
-    //image: ;
-    position: center center;
     repeat: no-repeat;
+    size: cover;
+    position: center;
+    blend-mode: luminosity;
   }
 
-  background: linear-gradient(to right, rgba(127,142,138,0.6) 0%, rgba(100,165,210,1) 100%); /* W3C */
+  &:before {
+    content: '';
+    left: 0;
+    right: 0;
+    position: absolute;
+    height: 100%;
+    background: linear-gradient(to right, rgba(127,142,138,0.3) 0%, rgba(100,165,210,0.7) 100%);
+  }
 
+  &.personal {
+    background-image: url('https://s3.eu-west-2.amazonaws.com/book-room-platform/personal.jpg');
+  }
 }
 
 .timeline {

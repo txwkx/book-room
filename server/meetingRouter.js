@@ -4,7 +4,7 @@ const mongoose = require('mongoose'),
       ObjectId = mongoose.Types.ObjectId;
 
 const user     = require('./models/userModel');
-const room     = require('./models/roomModel');
+const Room     = require('./models/roomModel');
 const Meeting  = require('./models/meetingModel');
 
 const isAuthed = require('./passport/isUserAuthed');
@@ -46,6 +46,16 @@ meetingRouter.get('/', isAuthed, (req, res) => {
         res.json(meetings);
       }
     });
+});
+
+meetingRouter.get('/roominfo', isAuthed, (req, res) => {
+
+  let query = { _id: ObjectId(req.query.roomId) };
+
+  Room.find(query).exec((err, room) => {
+    if(err) res.status(500).send(err);
+    else res.json(room);
+  });
 });
 
 meetingRouter.post('/', isAuthed, (req, res) => {
