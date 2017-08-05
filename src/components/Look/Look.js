@@ -92,6 +92,7 @@ export default class Look extends Component {
     const roomId = this.props.match.params.id;
     const { formIsOpened, roomInfo, scrolled, timeline } = this.state;
 
+    if(roomInfo === undefined) return <div class='loader'></div>;
     return (
     <div class='look'>
       <div class={`wrap ${scrolled ? 'scrolled' : ''}`}>
