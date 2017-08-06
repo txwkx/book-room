@@ -86,7 +86,7 @@ meetingRouter.post('/', isAuthed, (req, res) => {
 meetingRouter.post('/status', (req, res) => {
   let query = {
     meetingId: ObjectId(req.body.meetingId)
-  }
+  };
 
   Meeting.findById(query.meetingId, (err, meet) => {
     if(err) res.status(500).send(err);

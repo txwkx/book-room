@@ -6,7 +6,7 @@ const User      = require('../models/userModel');
 module.exports = (passport) => {
 
   passport.serializeUser((user, done) => {
-      
+
       done(null, user.id);
   });
 
@@ -24,7 +24,7 @@ module.exports = (passport) => {
   },
   (req, username, password, done) => {
 
-    User.findOne({ 'username': username }, (err, user) => {
+    User.findOne({ username: username }, (err, user) => {
       if (err) return done(err);
 
       if (user) {
@@ -35,7 +35,7 @@ module.exports = (passport) => {
         const userData = {
           username: username,
           password: password
-        }
+        };
 
         const newUser = new User(userData);
 
@@ -55,7 +55,7 @@ module.exports = (passport) => {
   },
   (req, username, password, done) => {
 
-    User.findOne({ 'username' :  username }, (err, user) => {
+    User.findOne({ username :  username }, (err, user) => {
 
       if (err) return done(err);
 
@@ -71,4 +71,4 @@ module.exports = (passport) => {
 
     });
   }));
-}
+};

@@ -1,0 +1,2 @@
+exclude_paths:
+- "src/__tests__"
