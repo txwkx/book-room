@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --hot --inline --open",
     "server": "nodemon server.js",
+    "build": "webpack -p --progress --colors",
     "test:watch": "jest --watch",
     "coverage": "jest --coverage"
   },
