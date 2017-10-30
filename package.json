@@ -13,6 +13,7 @@
   "repository": "https://github.com/txwkx/book-room.git",
   "author": "Todor Tsankov",
   "license": "MIT",
+  "homepage": "/",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",

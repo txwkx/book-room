@@ -18,11 +18,11 @@
 }
 
 .login, .book, .look {
-  @include form-style(url('https://s3.eu-west-2.amazonaws.com/book-room-platform/login.jpg'), rgba(42, 167, 213, 0.5), #2aa7d5);
+  @include form-style(url('https://s3.eu-west-2.amazonaws.com/book-room-platform/login.jpg'), rgba(42, 167, 213, 0.5), $blue);
 }
 
 .signup {
-  @include form-style(url('https://s3.eu-west-2.amazonaws.com/book-room-platform/signup.jpg'), rgba(82, 209, 164, 0.5), #52d1a4);
+  @include form-style(url('https://s3.eu-west-2.amazonaws.com/book-room-platform/signup.jpg'), rgba(82, 209, 164, 0.5), $green);
 }
 
 .bookform {
