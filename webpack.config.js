@@ -6,7 +6,7 @@ module.exports = {
   entry: './src/app.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, '/')
+    path: __dirname + '/'
   },
   module: {
     rules: [
@@ -52,6 +52,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.DefinePlugin({
