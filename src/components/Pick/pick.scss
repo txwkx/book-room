@@ -25,9 +25,10 @@
   .text {
     @include animation(fadein 2s);
     display: inline-block;
+    font-size: 28px;
 
     .heading {
-      font-size: 52px;
+      font-size: 56px;
       display: block;
 
     }
