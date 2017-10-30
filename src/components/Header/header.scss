@@ -9,11 +9,23 @@ $black: #04040a;
 
     .navbar-header {
       order: 0;
+      height: 50px;
       text-align: center;
 
       .navbar-brand {
         display: inline-block;
         float: initial;
+
+        &.icon {
+          min-width: 50px;
+          background: {
+            repeat: no-repeat;
+            position: center;
+            image: url("../../../logo.png");
+            size: contain;
+          }
+        }
+
       }
 
       .navbar-toggle {
