@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
-@import "./helpers/_variables.scss";
-@import "./helpers/_mixins.scss";
-@import "./helpers/_buttons.scss";
+@import "./partials/_variables.scss";
+@import "./partials/_mixins.scss";
+@import "./partials/_buttons.scss";
 
 @import "./components/Book/book";
 @import "./components/Look/look";
