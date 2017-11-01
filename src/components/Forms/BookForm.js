@@ -45,8 +45,11 @@ export default class BookForm extends Component {
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    if(!prevProps.isOpened) this.FormInput.focus();
-    if((this.props.room !== undefined) && (this.state.activeRoom.id !== this.props.room.id)){
+    if(this.FormInput !== null && !prevProps.isOpened) this.FormInput.focus();
+
+    if((this.props.room !== undefined)
+    && (this.props.room.id !== this.state.activeRoom.id)
+    && (this.state === prevState)){
       this.setState({ activeRoom: this.props.room });
     }
   }
@@ -61,7 +64,7 @@ export default class BookForm extends Component {
     let room = {};
     room['id'] = roomId || '';
     room['name'] = roomName || '';
-    this.setState({activeRoom: room});
+    this.setState({ activeRoom: room });
   }
 
   onDayChange = (day, { disabled }) => {
@@ -132,8 +135,8 @@ export default class BookForm extends Component {
           </div>
           <div class='content'>
             { success ?
-            <Success /> :
-            <form action='#' id='book-form' class={formStatus}>
+              <Success /> :
+              <form action='#' id='book-form' class={formStatus}>
 
                 <FormInput
                   name='Title'
@@ -141,7 +144,7 @@ export default class BookForm extends Component {
                   required={true}
                   ref={comp => {this.FormInput = comp;}}
                   onChange={ this.onTitleChange }
-                  />
+                />
 
                 <div class='inputs-group'>
                   <FormDropdown
@@ -149,34 +152,34 @@ export default class BookForm extends Component {
                     value={`${activeRoom.name}` || 'Room'}
                     ddList={this.state.rooms}
                     onChange={ this.onRoomChange }
-                    />
+                  />
 
-                    <FormDropdown
-                     name='Start Time'
-                     value={`${startT}` || 'HH:MM'}
-                     disabled={!Boolean(activeRoom.id && selectedDay)}
-                     ddList={this.mapTime2Obj([...INTERVALS.slice(0, -1)])}
-                     onChange={ this.onStartTChange }
-                     />
+                  <FormDropdown
+                    name='Start Time'
+                    value={`${startT}` || 'HH:MM'}
+                    disabled={!Boolean(activeRoom.id && selectedDay)}
+                    ddList={this.mapTime2Obj([...INTERVALS.slice(0, -1)])}
+                    onChange={ this.onStartTChange }
+                  />
 
-                   <FormDropdown
-                     name='End Time'
-                     value={`${endT}` || 'HH:MM'}
-                     disabled={!Boolean(activeRoom.id && selectedDay)}
-                     ddList={this.mapTime2Obj(endArr)}
-                     onChange={ this.onEndTChange }
-                     />
-               </div>
+                  <FormDropdown
+                    name='End Time'
+                    value={`${endT}` || 'HH:MM'}
+                    disabled={!Boolean(activeRoom.id && selectedDay)}
+                    ddList={this.mapTime2Obj(endArr)}
+                    onChange={ this.onEndTChange }
+                  />
+                </div>
 
-                   <DayPicker
-                     selectedDays={selectedDay}
-                     disabledDays={{ before: new Date() }}
-                     firstDayOfWeek={ 1 }
-                     fromMonth={new Date()}
-                     onDayClick={ this.onDayChange }
-                     />
+                <DayPicker
+                  selectedDays={selectedDay}
+                  disabledDays={{ before: new Date() }}
+                  firstDayOfWeek={ 1 }
+                  fromMonth={new Date()}
+                  onDayClick={ this.onDayChange }
+                />
 
-                 <input type='submit' value='Claim Room' disabled={!(title && activeRoom && startT && endT)} class='btn btn-form' onClick={this.handleReservation}/>
+                <input type='submit' value='Claim Room' disabled={!(title && activeRoom && startT && endT)} class='btn btn-form' onClick={this.handleReservation}/>
 
             </form>
           }
