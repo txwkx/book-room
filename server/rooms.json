@@ -1,0 +1,15 @@
+{"_id":{"$oid":"5974b5b603c1f994e368abc8"},"value":"Airbnb","photo":"https://s3.eu-west-2.amazonaws.com/book-room-platform/airbnb.jpg"}
+{"_id":{"$oid":"5974b5b603c1f994e368abc9"},"value":"Autodesk","photo":"https://s3.eu-west-2.amazonaws.com/book-room-platform/autodesk.jpg"}
+{"_id":{"$oid":"5974b5b603c1f994e368abca"},"value":"Conde Nast Ent.","photo":"https://s3.eu-west-2.amazonaws.com/book-room-platform/condenastent.jpg"}
+{"_id":{"$oid":"5974b5b603c1f994e368abcb"},"value":"Decom","photo":"https://s3.eu-west-2.amazonaws.com/book-room-platform/decom.jpg"}
+{"_id":{"$oid":"5974b5b603c1f994e368abcc"},"value":"Fairphone","photo":"https://s3.eu-west-2.amazonaws.com/book-room-platform/fairphone.jpg"}
+{"_id":{"$oid":"5974b5b603c1f994e368abcd"},"value":"Grupocp","photo":"https://s3.eu-west-2.amazonaws.com/book-room-platform/grupocp.jpg"}
+{"_id":{"$oid":"5974b5b603c1f994e368abce"},"value":"Heavybit Ind.","photo":"https://s3.eu-west-2.amazonaws.com/book-room-platform/heavybitindustries.jpg"}
+{"_id":{"$oid":"5974b5b603c1f994e368abcf"},"value":"IsIs","photo":"https://s3.eu-west-2.amazonaws.com/book-room-platform/isisoffice.jpg"}
+{"_id":{"$oid":"5974b5b603c1f994e368abd0"},"value":"Leo Burnett","photo":"https://s3.eu-west-2.amazonaws.com/book-room-platform/leoburnetthq.jpg"}
+{"_id":{"$oid":"5974b5b603c1f994e368abd1"},"value":"Loft","photo":"https://s3.eu-west-2.amazonaws.com/book-room-platform/loft.jpg"}
+{"_id":{"$oid":"5974b5b603c1f994e368abd2"},"value":"Pinterest","photo":"https://s3.eu-west-2.amazonaws.com/book-room-platform/pinterest.jpg"}
+{"_id":{"$oid":"5974b5b603c1f994e368abd3"},"value":"Skyscanner","photo":"https://s3.eu-west-2.amazonaws.com/book-room-platform/skyscanner.jpg"}
+{"_id":{"$oid":"5974b5b603c1f994e368abd4"},"value":"Truly Madly","photo":"https://s3.eu-west-2.amazonaws.com/book-room-platform/trulymadlyoffice.jpg"}
+{"_id":{"$oid":"5974b5b603c1f994e368abd5"},"value":"WeWork","photo":"https://s3.eu-west-2.amazonaws.com/book-room-platform/wework.jpg"}
+{"_id":{"$oid":"5974b5b603c1f994e368abd6"},"value":"Zendesk","photo":"https://s3.eu-west-2.amazonaws.com/book-room-platform/zendesk.jpg"}
