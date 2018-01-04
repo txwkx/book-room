@@ -53,7 +53,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new BundleAnalyzerPlugin(),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
