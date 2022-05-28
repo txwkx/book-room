@@ -1,4 +1,6 @@
 # Book-Room 🔒
+
+‼️ This repository is no longer maintained. I built it as a fun weekend project.
 Manage room usage via a simple app
 
 ## Status
